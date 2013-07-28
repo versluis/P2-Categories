@@ -305,7 +305,7 @@
 		this.each( function() {
 			var $this = $( this ),
 				data = $this.data();
-	
+
 			if ( data.spinner ) {
 				data.spinner.stop();
 				delete data.spinner;

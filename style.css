@@ -1,13 +1,13 @@
 /*
-Theme Name: P2 with Categories
-Theme URI: http://wpguru.co.uk
-Author: Jay Versluis + Automattic
-Author URI: http://wpguru.co.uk
-Description: This is a fork of P2 version 1.4.2 with added category posting (as we used to like it in P2 1.3.3). This process is explained here: http://wpguru.co.uk/2012/04/how-to-bring-back-post-categories-in-p2/
-Version: 1.4.2c
-Tags: blue, two-columns, fixed-width, rtl-language-support, right-sidebar, white, light, front-page-post-form, translation-ready, custom-background, custom-header, custom-menu, post-formats, sticky-post, theme-options
-License: GNU General Public License v2.0
+Theme Name: P2
+Theme URI: http://p2theme.com/
+Author: Automattic
+Author URI: http://automattic.com/
+Description: A group blog theme for short update messages, inspired by Twitter. Featuring: Hassle-free posting from the front page. Perfect for group blogging, or as a liveblog theme. Dynamic page updates. Threaded comment display on the front page. In-line editing for posts and comments. Live tag suggestion based on previously used tags. A show/hide feature for comments, to keep things tidy. Real-time notifications when a new comment or update is posted. Super-handy keyboard shortcuts. Helvetica Neue for you modern font lovers.
+Version: 1.5.1
+License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: blue, custom-colors, two-columns, fixed-width, rtl-language-support, right-sidebar, white, light, front-page-post-form, translation-ready, custom-background, custom-header, custom-menu, post-formats, sticky-post, theme-options
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
@@ -16,7 +16,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 /* The Reset ---------------------------------- */
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,
 h6,pre,form,fieldset,input,p,blockquote,table,
-th,td { margin: 0; padding: 0; }
+th,td,figure { margin: 0; padding: 0; }
 fieldset,img { border: 0; }
 abbr { border-bottom: 1px dotted #555; cursor: help; outline: none; }
 address,caption,code,dfn,h1,h2,h3,h4,h5,h6,th,var { font-style: normal; font-weight: normal; }
@@ -161,7 +161,6 @@ blockquote + blockquote {
 }
 #postbox .inputarea {
 	padding-left: 60px;
-	height: 100%;
 }
 .inputarea .post-input {
 	display: none;
@@ -175,9 +174,9 @@ textarea.posttext {
 	border-width: 1px;
 	font-size: 13px;
 	margin-bottom: 6px;
-	max-width: 97.45%;
+	max-width: 97%;
 	padding: 5px 7px;
-	width: 97.45%;
+	width: 97%;
 	height: 4em;
 }
 #wrapper form input[type="text"],
@@ -187,7 +186,7 @@ textarea.posttext {
 	padding: 5px 7px;
 }
 .inlineediting input[type="text"] {
-	width: 97.6%;
+	width: 97.45%;
 }
 form#new_post {
 	margin-top: 20px;
@@ -207,7 +206,7 @@ form#new_post {
 	width: 60%;
 }
 #postbox input#submit {
-	margin-left: 6px;
+	margin: 0 3px 0 6px;
 	padding: 0 20px;
 	float: right;
 }
@@ -218,7 +217,12 @@ form#new_post {
 	float: right;
 	min-width: 100px;
 	position: relative;
-		top: 8px;
+		top: 6px;
+		right: 16px;
+	text-align: right;
+}
+#postbox-type-post:not([style*="display: none"]) + #media-buttons {
+	top: 0;
 }
 #media-buttons .add_media:after {
 	background: url( i/icons.png ) -800px center no-repeat;
@@ -230,9 +234,17 @@ form#new_post {
 	width: 16px;
 	height: 16px;
 }
+#media-buttons .button {
+	background: transparent;
+	border: none;
+	height: auto;
+	padding: 0;
+	line-height: inherit;
+}
+
 #postbox input#posttitle,
 #postbox input#postcitation {
-	width: 97.6%;
+	width: 97%;
 	margin-bottom: 5px;
 }
 .disabled, .disabled:hover {
@@ -353,7 +365,8 @@ h2 img {
 #main p img.latex {
 	display: inline-block;
 }
-#main p {
+#main p,
+.mejs-container {
 	margin: .7em 0;
 }
 #main ul, #main ol {
@@ -484,6 +497,7 @@ h2 img {
 	width: 94% !important;
 }
 .commentcontent {
+	min-height: 2.4em;
 	overflow: auto;
 }
 .commentlist {
@@ -764,7 +778,7 @@ a.hidemessage {
 		left: 87px;
 }
 .progress.spinner-comment-edit {
-	padding: 3px 0 13px;
+	padding: 9px 0 13px;
 }
 #tooltip {
 	position: absolute;
@@ -984,9 +998,12 @@ div.entry {
 }
 .inlineediting .tags {
 	float: left;
+	position: relative;
+		z-index: 2;
 }
 .inlineediting .buttons {
 	position: relative;
+		z-index: 1;
 }
 .inlineediting .buttons img {
 	vertical-align: middle;
@@ -1004,10 +1021,10 @@ div.entry {
 body {
 	background: #f1f1f1;
 }
-a, a:visited, h1 a:visited, a:active, #main .selected .actions a, #main .selected .actions a:link, #main .selected .actions a:visited, #help dt {
+a, a:visited, h1 a:visited, a:active, #main .selected .actions a, #main .selected .actions a:link, #main .selected .actions a:visited, #help dt, #media-buttons .button {
 	color: #3478e3;
 }
-a:hover, h1 a:hover, #main .selected .actions a:hover, #main .selected .actions a:active {
+a:hover, h1 a:hover, #main .selected .actions a:hover, #main .selected .actions a:active, #media-buttons .button:hover {
 	color: #d54e21;
 }
 a:hover {
@@ -1052,8 +1069,9 @@ h3 {
 #header .sleeve {
 	background: #fff;
 }
+#header h1 a,
 #header small {
-	color: #888;
+	color: #3478e3;
 }
 #footer {
 	background: #fff;
@@ -1129,7 +1147,8 @@ h3 {
 .postcontent {
 	color: #555;
 }
-#main p img {
+#main p img,
+.wp-caption img {
 	border-color: #eee;
 	max-width: 98%;
 	height: auto;
@@ -1269,9 +1288,9 @@ code, pre {
 dt {
 	font-weight: bold;
 }
-.category-quote blockquote p,
-.format-quote blockquote p {
-	font-size: 1.2em !important;
+#main .category-quote blockquote p,
+#main .format-quote blockquote p {
+	font-size: 1.2em;
 }
 .category-quote blockquote cite,
 .format-quote blockquote cite {
@@ -1280,7 +1299,7 @@ dt {
 }
 .category-quote blockquote cite:before,
 .format-quote blockquote cite:before {
-	content: "— ";
+	content: "\2014 ";
 }
 h1 {
 	font-size: 4em;
@@ -1482,30 +1501,41 @@ form.textedit textarea {
 	top: 0;
 	left: 0;
 }
-.postcontent table {
+.postcontent table,
+.commentcontent table {
 	border: 1px solid #ccc;
 	border-width: 1px 1px 1px 0;
 	border-spacing: 0;
-	margin-bottom: 1.5em;
+	margin: .7em 0 1.5em;
 	width: 100%;
 }
-.postcontent table td {
+.postcontent table td,
+.commentcontent table td {
 	border: 1px solid #ccc;
 	border-width: 1px 0 0 1px;
 	padding: 6px 15px;
 }
-.postcontent table th {
+.postcontent table th,
+.commentcontent table th {
 	background-color: #f7f7f7;
 	color: #555;
 	border-left: 1px solid #ccc;
 	font-weight: bold;
 	padding: 6px 15px;
 }
-.postcontent table tr {
+.postcontent table tr,
+.commentcontent table tr {
 	border: 0;
 	border-width: 0;
 }
-.postcontent table ul,.postcontent table ol,.postcontent table p,.postcontent table blockquote {
+.postcontent table ul,
+.postcontent table ol,
+.postcontent table p,
+.postcontent table blockquote,
+.commentcontent table ul,
+.commentcontent table ol,
+.commentcontent table p,
+.commentcontent table blockquote, {
 	margin-top: 0 !important;
 	margin-bottom: 1.6em !important;
 }
@@ -1532,14 +1562,18 @@ a.mention-current-user:hover {
 	text-shadow: 0 1px 0 #333;
 }
 .wp-caption {
-	border: 1px solid #ddd;
-	text-align: center;
 	background-color: #f3f3f3;
-	padding-top: 4px;
-	margin: 10px;
-	-moz-border-radius: 3px;
+	border: 1px solid #ddd;
 	-webkit-border-radius: 3px;
-	border-radius: 3px;
+	-moz-border-radius:    3px;
+	border-radius:         3px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing:    border-box;
+	box-sizing:         border-box;
+	margin: 10px;
+	max-width: 100%;
+	padding-top: 4px;
+	text-align: center;
 }
 .wp-caption img {
 	margin: 0;
@@ -1624,7 +1658,7 @@ div.possibly-related {
 .ui-menu .ui-menu-item a {
 	padding: 3px 4px !important;
 	position: relative;
-	background: none !important;
+	background: none;
 }
 
 .ui-menu .ui-menu-item:last-child .ui-state-hover,
@@ -1633,11 +1667,11 @@ div.possibly-related {
 }
 
 .ui-menu li.ui-menu-item {
-	background: none !important; /* Overriding inline nth-child(2n+1) rule */
+	background: none; /* Overriding inline nth-child(2n+1) rule */
 }
 
 .ui-menu .ui-menu-item:nth-child(2n+1) a {
-	background: #D9E8FF !important; /* Applies rule again */
+	background: #D9E8FF; /* Applies rule again */
 	border-color: #D9E8FF;
 }
 
@@ -1651,7 +1685,7 @@ div.possibly-related {
 	-moz-box-shadow: 0 1px 5px rgba(0,0,0,.45);
 	-webkit-box-shadow: 0 1px 5px rgba(0,0,0,.45);
 	box-shadow: 0 1px 5px rgba(0,0,0,.45);
-	background: #3478E3 !important; /* !important needed - overules previous changes on hover/focus */
+	background: #3478E3; /* !important needed - overules previous changes on hover/focus */
 	z-index: 5;
 	color: #fff !important;
 }
@@ -1673,6 +1707,20 @@ div.possibly-related {
 	color: #000;
 }
 /* end Santa carnage */
+
+
+/* =WP.com Specific Styles
+--------------------------------------------------------- */
+
+.milestone-widget .milestone-content {
+	max-width: 210px;
+}
+.milestone-widget .milestone-countdown {
+	border-color: #ccc;
+}
+.milestone-widget .difference {
+	padding-top: 15px;
+}
 
 
 /* =Menu
@@ -1782,6 +1830,9 @@ div.possibly-related {
 .iphone .main-navigation .menu {
 	display: none;
 }
+.printer-only {
+	display: none;
+}
 
 /* =Retina Displays
 --------------------------------------------------------- */
@@ -1814,7 +1865,3 @@ div.possibly-related {
 			background-size: 816px 16px;
 		}
 }
-
-
-/* The Add Media button is too low when a blog post is selected */
-#media-buttons {top: -2px;}

@@ -106,7 +106,7 @@ function p2_quote_content() {
 	echo p2_get_quote_content();
 }
 	function p2_get_quote_content() {
-		return apply_filters( 'p2_get_quote_content', get_the_content( __( '(More ...)' , 'p2' ) ) );
+		return sprintf( '<blockquote>%s</blockquote>', apply_filters( 'p2_get_quote_content', get_the_content( __( '(More ...)' , 'p2' ) ) ) );
 	}
 	add_filter( 'p2_get_quote_content', 'p2_quote_filter_kses', 1 );
 	add_filter( 'p2_get_quote_content', 'wptexturize' );
