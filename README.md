@@ -23,6 +23,8 @@ Installation
 
 This entire project is a WordPress theme. Download it and copy all files into a new folder under wp-content/themes. Then head over to Appearance - Themes and activate P2 Categories. It looks and works just like the original P2.
 
+Or, an even easier way to install is by downloading this repo as a ZIP, then WordPress head over to Appearance - Themes - Install and upload it there.
+
 
 How do P2 Categories work, and how do I use them?
 =================================================
