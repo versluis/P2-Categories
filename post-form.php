@@ -71,7 +71,8 @@
                    foreach ($categories as $cat) {
                       $option = '<option value="'.$cat->category_nicename.'">';
                       $option .= $cat->cat_name;
-                      $option .= ' ('.$cat->category_count.')';
+					  // show how many posts there are in each category
+                      // $option .= ' ('.$cat->category_count.')';
                       $option .= '</option>';
                       echo $option;
                    }
