@@ -33,6 +33,16 @@
 			<li><a id="post" class="post-format-button"<?php if ( 'post' == $post_format || 'standard' == $post_format ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=post' ); ?>" title="<?php esc_attr_e( 'Blog Post', 'p2' ); ?>"><?php _e( 'Blog Post', 'p2' ); ?></a></li>
 			<li><a id="quote" class="post-format-button"<?php if ( 'quote' == $post_format ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=quote' ); ?>" title="<?php esc_attr_e( 'Quote', 'p2' ); ?>"><?php _e( 'Quote', 'p2' ); ?></a></li>
 			<li><a id="link" class="post-format-button"<?php if ( 'link' == $post_format ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=link' ); ?>" title="<?php esc_attr_e( 'Link', 'p2' ); ?>"><?php _e( 'Link', 'p2' ); ?></a></li>
+            <?php
+			//////////////////////////////////////////
+			// P2 Categories Mod
+			
+			// let's add a categry drop down menu here
+            echo '<li id="p2Categories">';
+			wp_dropdown_categories();
+			echo '</li>';
+			
+            ?>
 		</ul>
 
 		<div class="avatar">
