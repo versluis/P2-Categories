@@ -49,14 +49,32 @@
                 <select name="drop_cat" id="drop_cat">
                    <option value=""><?php echo attribute_escape(__('Select Category')); ?></option>
                    <?php
-                    $categories=  get_categories();
-                    foreach ($categories as $cat) {
+				   // setup category options
+				   // as explained here: http://codex.wordpress.org/Function_Reference/get_categories
+                   $args = array (
+								  'type'           => 'post',
+								  'child_of'       => 0,
+								  'parent'         => '',
+								  'orderby'        => 'name',
+								  'order'          => 'ASC',
+								  'hide_empty'     => 0,
+								  'hierarchical'   => 1,
+								  'exclude'        => '',
+								  'include'        => '',
+								  'number'         => '',
+								  'taxonomy'       => 'category',
+								  'pad_counts'     => false
+								  ); 
+				   
+				   $categories =  get_categories($args);
+				   
+                   foreach ($categories as $cat) {
                       $option = '<option value="'.$cat->category_nicename.'">';
                       $option .= $cat->cat_name;
                       $option .= ' ('.$cat->category_count.')';
                       $option .= '</option>';
                       echo $option;
-                    }
+                   }
                    ?>
                 </select>
             
