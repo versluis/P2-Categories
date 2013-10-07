@@ -226,7 +226,7 @@ class P2Ajax extends P2Ajax_Read {
 		if ( ! empty( $_POST['post_citation'] ) && 'quote' == $post_format )
 			$post_content = '<p>' . $post_content . '</p><cite>' . $_POST['post_citation'] . '</cite>';
 
-/* original code
+		/* original code
 		$post_id = wp_insert_post( array(
 			'post_author'   => $user_id,
 			'post_title'    => $post_title,
@@ -235,22 +235,20 @@ class P2Ajax extends P2Ajax_Read {
 			'tags_input'    => $tags,
 			'post_status'   => 'publish'
 		) );
-		
 		end of original */
 		
-/*****************************/
-/* WP Guru P2 Categories Mod */
-/* starts here               */
-/*****************************/
+		/*****************************/
+		/* WP Guru P2 Categories Mod */
+		/* starts here               */
+		/*****************************/
 
-		// define $post_cat
-		$post_cat = $_POST['cat'];
-		// and turn it into the category ID
-		// $post_cat = get_category_by_slug( $post_cat );
+		// this will give us the category slug
+		$drop_cat = $_POST['drop_cat'];
+		// let's convert it into an ID
+		$post_cat_object = get_category_by_slug( $drop_cat );
+		$post_cat_ID = $post_cat_object -> term_id;
 		
-		echo 'cat is ' . $post_cat . 'END';
-		// $post_cat is always empty
-		// STUCK HERE UNTIL FURTHER NOTICE
+		echo '$post_cat_ID is ' . $post_cat_ID . 'END';
 		
 		$post_id = wp_insert_post( array(
 			'post_author'   => $user_id,
@@ -266,11 +264,12 @@ class P2Ajax extends P2Ajax_Read {
 		
 		// put everything into a specific category for now
 		// wp_set_post_terms( $post_id, $terms, $taxonomy, $append );
-		$tag = array( 5 );
+		
+		$tag = array( $post_cat_ID );
 		$taxonomy = 'category';
 		wp_set_post_terms( $post_id, $tag, $taxonomy );
-
-/* END OF CATEGORIES MOD */
+		
+		/* END OF CATEGORIES MOD */
 
 		if ( empty( $post_id ) )
 			echo '0';

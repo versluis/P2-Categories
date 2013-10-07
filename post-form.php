@@ -41,7 +41,7 @@
 			// P2 Categories Mod
 			// let's add a category drop down menu here
             echo '<li id="p2Categories">';
-			wp_dropdown_categories();
+			// wp_dropdown_categories();
 			echo '</li>';
 			
             ?>
@@ -55,6 +55,7 @@
 
 			<!-- this is where that form was -->
             <form id="new_post" name="new_post" method="post" action="<?php echo site_url(); ?>/">
+            
 				<?php if ( 'status' == $post_format || empty( $post_format ) ) : ?>
 				<label for="posttext" id="post-prompt">
 					<?php p2_user_prompt(); ?>
@@ -94,6 +95,22 @@
 
 				<input type="hidden" name="action" value="post" />
 				<?php wp_nonce_field( 'new-post' ); ?>
+                
+                <!-- Nobble's Solution -->
+                <select name="drop_cat" id="drop_cat">
+                   <option value=""><?php echo attribute_escape(__('Select Category')); ?></option>
+                   <?php
+                    $categories=  get_categories();
+                    foreach ($categories as $cat) {
+                      $option = '<option value="'.$cat->category_nicename.'">';
+                      $option .= $cat->cat_name;
+                      $option .= ' ('.$cat->category_count.')';
+                      $option .= '</option>';
+                      echo $option;
+                    }
+                   ?>
+                </select>
+                
 			</form>
 
 		</div>
