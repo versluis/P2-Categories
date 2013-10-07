@@ -47,10 +47,10 @@ pre, code {
 	min-height: 120px;
 	position: relative;
 }
-#header .sleeve {
-	display: inline-block;
+#header .sleeve {  
+	display: block; /* thanks to lagerassasin for this fix: http://wordpress.org/support/topic/menu-breaks-with-custom-header?replies=2 */
 	margin-top: 40px;
-}
+} 
 h1 {
 	display: inline-block;
 	padding: 8px 10px;
@@ -1871,5 +1871,10 @@ div.possibly-related {
 /* position that drop down menu */
 #p2Categories {
 	
+}
+
+/* Firefox Custom Header Fix */
+.main-navigation .menu {
+	-moz-box-align: left;
 }
 	

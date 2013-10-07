@@ -244,9 +244,13 @@ class P2Ajax extends P2Ajax_Read {
 /*****************************/
 
 		// define $post_cat
-		$post_cat = $_POST['post_format'];
+		$post_cat = $_POST['cat'];
 		// and turn it into the category ID
-		$post_cat = get_category_by_slug( $post_cat );
+		// $post_cat = get_category_by_slug( $post_cat );
+		
+		echo 'cat is ' . $post_cat . 'END';
+		// $post_cat is always empty
+		// STUCK HERE UNTIL FURTHER NOTICE
 		
 		$post_id = wp_insert_post( array(
 			'post_author'   => $user_id,
@@ -254,11 +258,17 @@ class P2Ajax extends P2Ajax_Read {
 			'post_content'  => $post_content,
 			'post_type'     => 'post',
 			'tags_input'    => $tags,
-			'post_status'   => 'publish',
+			'post_status'   => 'publish'
 			// bringing back P2 Categories
-			'post_category' => array( $post_cat -> cat_ID )
+			// 'post_category' => array( $post_cat -> cat_ID )
 			// end of mod
 		) );
+		
+		// put everything into a specific category for now
+		// wp_set_post_terms( $post_id, $terms, $taxonomy, $append );
+		$tag = array( 5 );
+		$taxonomy = 'category';
+		wp_set_post_terms( $post_id, $tag, $taxonomy );
 
 /* END OF CATEGORIES MOD */
 
