@@ -63,7 +63,7 @@
                 <!--//////////////////////////-->
                 <!-- list categories of this post -->
                 <!--//////////////////////////-->
-				<span class="tags">
+				<span class="categories">
                 <?php 
 				$separator = ' | ';
 				$parents = '';
