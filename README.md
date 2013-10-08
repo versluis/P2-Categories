@@ -27,11 +27,10 @@ The menu only shows existing categories. You cannot create categories from the f
 Further Reading
 ================
 
+I've explained how these changes are made here:
+http://wpguru.co.uk/2013/10/how-to-add-drop-down-categories-to-automattics-p2-theme/
+
 You can find thr original P2 theme by Automattic here:
 http://p2theme.com
 
 Check out my P2 User Guide at http://p2guide.wordpress.com
-
-Related: How to add new category buttons to the front page: http://wpguru.co.uk/2012/03/how-to-tweak-p2-adding-and-replacing-categories/
-
-My original post covering this topic, with code explanations: http://wpguru.co.uk/2012/04/how-to-bring-back-post-categories-in-p2/
