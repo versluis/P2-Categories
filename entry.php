@@ -66,6 +66,7 @@
 				<span class="tags">
                 <?php 
 				$separator = ' | ';
+				$parents = '';
 				$post_id = get_the_ID();
 				echo '<br>Categories: ';
 				echo get_the_category_list( $separator, $parents, $post_id ); 
