@@ -227,20 +227,7 @@ class P2Ajax extends P2Ajax_Read {
 			$post_content = '<p>' . $post_content . '</p><cite>' . $_POST['post_citation'] . '</cite>';
 
 		
-		/*****************************/
-		/* P2 Categories Mod         */
-		/* starts here               */
-		/*****************************/
-
-		// this will give us the category slug
-		$drop_cat = $_POST['drop_cat'];
-		// let's convert it into an ID
-		// as explained here: http://codex.wordpress.org/Function_Reference/get_category_by_slug
-		$post_cat_object = get_category_by_slug( $drop_cat );
-		$post_cat_ID = $post_cat_object -> term_id;
-		
-		echo '$post_cat_ID is ' . $post_cat_ID . 'END';
-		
+		// this creates the post
 		$post_id = wp_insert_post( array(
 			'post_author'   => $user_id,
 			'post_title'    => $post_title,
@@ -250,15 +237,38 @@ class P2Ajax extends P2Ajax_Read {
 			'post_status'   => 'publish'
 		) );
 		
-		// now we define the category ID
-		// as explained here: http://codex.wordpress.org/Function_Reference/wp_set_post_terms
 		
-		$tag = array( $post_cat_ID );
-		$taxonomy = 'category';
-		wp_set_post_terms( $post_id, $tag, $taxonomy );
-		
-		/* END OF CATEGORIES MOD */
+		/*****************************/
+		/* P2 Categories Mod         */
+		/* starts here               */
+		/*****************************/
 
+		// this will give us the category slug
+		$drop_cat = $_POST['drop_cat'];
+		// if nothing was selected, use the default category
+		if ($drop_cat == '') {
+			
+			$drop_cat = get_option('default_category');
+			// in this case we already have the category ID
+			$tag = array( $drop_cat );
+			$taxonomy = 'category';
+			wp_set_post_terms( $post_id, $tag, $taxonomy );
+		
+		} else {
+			// let's convert the slug into an ID
+			// as explained here: http://codex.wordpress.org/Function_Reference/get_category_by_slug
+			$post_cat_object = get_category_by_slug( $drop_cat );
+			$post_cat_ID = $post_cat_object -> term_id;
+			
+			// now we define the category ID
+			// as explained here: http://codex.wordpress.org/Function_Reference/wp_set_post_terms
+			$tag = array( $post_cat_ID );
+			$taxonomy = 'category';
+			wp_set_post_terms( $post_id, $tag, $taxonomy );
+		}
+		/* END OF CATEGORIES MOD */
+		
+		
 		if ( empty( $post_id ) )
 			echo '0';
 

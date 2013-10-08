@@ -3,7 +3,7 @@ Theme Name: P2 Categories
 Theme URI: https://github.com/versluis/P2-Categories
 Author: Jay Versluis
 Author URI: http://wpguru.co.uk
-Description: a fork of the amazing P2 Theme by Automattic, with added categorgry functionality
+Description: a fork of the amazing P2 Theme by Automattic, with added support for categories
 Version: 1.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -11,23 +11,6 @@ Tags: blue, custom-colors, two-columns, fixed-width, rtl-language-support, right
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
-*/
-
-/* 
-CHANGELOG
-
-v1.1 - 07/10/2013
-added dropdown menu for category selection (thanks to Nobble)
-display categories in each post
-fixed "broken menu in Firefox" when using a custom header (thanks to lagerassasin)
-minor CSS improvements
-added P2 Turkish translation (thanks to erayaydin)
-added Brazilian Portuguese translation (thanks to Eduardo Zulian)
-
-v1.0 - March 2013
-started as a demo project to supplement an article I had written
-Thanks to evey contributor who brought us P2 1.5.1 - we love you all
-
 */
 
 /* The Reset ---------------------------------- */
@@ -1892,7 +1875,6 @@ div.possibly-related {
 	float: right;
 	font-size: 1.6em;
 }
-
 /* give code sections a bit more padding */
 pre {
 	background: #eee;
@@ -1903,15 +1885,24 @@ pre {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 }
-
 /* remove borders around images */
 #main p img {
 	border: none;
 }
-
 /* the search button is a bit close to the search box */
 #searchsubmit {
 	margin-left: 10px;
 }
-
+/* style category meta just like tags */
+.inlineediting input.categories {
+	width: 60%;
+}
+.inlineediting .categories {
+	float: left;
+	position: relative;
+	z-index: 2;
+}
+/* the category description */
+#p2CategoryDescription {
 	
+}

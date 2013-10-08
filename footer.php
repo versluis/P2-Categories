@@ -12,7 +12,7 @@
 <div id="footer">
 	<p>
 		<?php echo prologue_poweredby_link(); ?>
-	    <?php printf( __( 'Theme: %1$s by %2$s.', 'p2' ), 'P2', '<a href="http://automattic.com/" rel="designer">Automattic</a>' ); ?>
+	    <?php printf( __( 'Theme: %1$s %2$s.', 'p2' ), 'P2 Categories - ', '<a href="https://github.com/versluis/P2-Categories" rel="designer">fork me</a>' ); ?>
 	</p>
 </div>
 
