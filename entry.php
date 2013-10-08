@@ -56,8 +56,21 @@
 			<?php if ( is_object_in_taxonomy( get_post_type(), 'post_tag' ) ) : ?>
 				<span class="tags">
 					<?php tags_with_count( '', __( '<br />Tags:' , 'p2' ) .' ', ', ', ' &nbsp;' ); ?>&nbsp;
+                    
 				</span>
-			<?php endif; ?>
+                <?php endif; ?>
+                
+                <!--//////////////////////////-->
+                <!-- list categories of this post -->
+                <!--//////////////////////////-->
+				<span class="tags">
+                <?php 
+				$separator = ' | ';
+				$post_id = get_the_ID();
+				echo '<br>Categories: ';
+				echo get_the_category_list( $separator, $parents, $post_id ); 
+				?>	
+				</span>
 		</span>
 	</h4>
 

@@ -226,7 +226,21 @@ class P2Ajax extends P2Ajax_Read {
 		if ( ! empty( $_POST['post_citation'] ) && 'quote' == $post_format )
 			$post_content = '<p>' . $post_content . '</p><cite>' . $_POST['post_citation'] . '</cite>';
 
-/* original code
+		
+		/*****************************/
+		/* P2 Categories Mod         */
+		/* starts here               */
+		/*****************************/
+
+		// this will give us the category slug
+		$drop_cat = $_POST['drop_cat'];
+		// let's convert it into an ID
+		// as explained here: http://codex.wordpress.org/Function_Reference/get_category_by_slug
+		$post_cat_object = get_category_by_slug( $drop_cat );
+		$post_cat_ID = $post_cat_object -> term_id;
+		
+		echo '$post_cat_ID is ' . $post_cat_ID . 'END';
+		
 		$post_id = wp_insert_post( array(
 			'post_author'   => $user_id,
 			'post_title'    => $post_title,
@@ -236,31 +250,14 @@ class P2Ajax extends P2Ajax_Read {
 			'post_status'   => 'publish'
 		) );
 		
-		end of original */
+		// now we define the category ID
+		// as explained here: http://codex.wordpress.org/Function_Reference/wp_set_post_terms
 		
-/*****************************/
-/* WP Guru P2 Categories Mod */
-/* starts here               */
-/*****************************/
-
-		// define $post_cat
-		$post_cat = $_POST['post_format'];
-		// and turn it into the category ID
-		$post_cat = get_category_by_slug( $post_cat );
+		$tag = array( $post_cat_ID );
+		$taxonomy = 'category';
+		wp_set_post_terms( $post_id, $tag, $taxonomy );
 		
-		$post_id = wp_insert_post( array(
-			'post_author'   => $user_id,
-			'post_title'    => $post_title,
-			'post_content'  => $post_content,
-			'post_type'     => 'post',
-			'tags_input'    => $tags,
-			'post_status'   => 'publish',
-			// bringing back P2 Categories
-			'post_category' => array( $post_cat -> cat_ID )
-			// end of mod
-		) );
-
-/* END OF CATEGORIES MOD */
+		/* END OF CATEGORIES MOD */
 
 		if ( empty( $post_id ) )
 			echo '0';

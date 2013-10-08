@@ -33,6 +33,7 @@
 			<li><a id="post" class="post-format-button"<?php if ( 'post' == $post_format || 'standard' == $post_format ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=post' ); ?>" title="<?php esc_attr_e( 'Blog Post', 'p2' ); ?>"><?php _e( 'Blog Post', 'p2' ); ?></a></li>
 			<li><a id="quote" class="post-format-button"<?php if ( 'quote' == $post_format ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=quote' ); ?>" title="<?php esc_attr_e( 'Quote', 'p2' ); ?>"><?php _e( 'Quote', 'p2' ); ?></a></li>
 			<li><a id="link" class="post-format-button"<?php if ( 'link' == $post_format ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=link' ); ?>" title="<?php esc_attr_e( 'Link', 'p2' ); ?>"><?php _e( 'Link', 'p2' ); ?></a></li>
+            
 		</ul>
 
 		<div class="avatar">
@@ -41,7 +42,43 @@
 
 		<div class="inputarea">
 
-			<form id="new_post" name="new_post" method="post" action="<?php echo site_url(); ?>/">
+			<!-- this is where that form was -->
+            <form id="new_post" name="new_post" method="post" action="<?php echo site_url(); ?>/">
+            
+            <!-- Nobble's Drop Down Categories -->
+                <select name="drop_cat" id="drop_cat">
+                   <option value=""><?php echo attribute_escape(__('Select Category')); ?></option>
+                   <?php
+				   // setup category options
+				   // as explained here: http://codex.wordpress.org/Function_Reference/get_categories
+                   $args = array (
+								  'type'           => 'post',
+								  'child_of'       => 0,
+								  'parent'         => '',
+								  'orderby'        => 'name',
+								  'order'          => 'ASC',
+								  'hide_empty'     => 0,
+								  'hierarchical'   => 1,
+								  'exclude'        => '',
+								  'include'        => '',
+								  'number'         => '',
+								  'taxonomy'       => 'category',
+								  'pad_counts'     => false
+								  ); 
+				   
+				   $categories =  get_categories($args);
+				   
+                   foreach ($categories as $cat) {
+                      $option = '<option value="'.$cat->category_nicename.'">';
+                      $option .= $cat->cat_name;
+					  // show how many posts there are in each category
+                      // $option .= ' ('.$cat->category_count.')';
+                      $option .= '</option>';
+                      echo $option;
+                   }
+                   ?>
+                </select>
+            
 				<?php if ( 'status' == $post_format || empty( $post_format ) ) : ?>
 				<label for="posttext" id="post-prompt">
 					<?php p2_user_prompt(); ?>
@@ -81,6 +118,9 @@
 
 				<input type="hidden" name="action" value="post" />
 				<?php wp_nonce_field( 'new-post' ); ?>
+                
+                
+                
 			</form>
 
 		</div>

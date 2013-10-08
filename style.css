@@ -3,14 +3,31 @@ Theme Name: P2 Categories
 Theme URI: https://github.com/versluis/P2-Categories
 Author: Jay Versluis
 Author URI: http://wpguru.co.uk
-Description: P2 Theme by Automattic, modified to post into categorgies
-Version: 1.5.1
+Description: a fork of the amazing P2 Theme by Automattic, with added categorgry functionality
+Version: 1.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blue, custom-colors, two-columns, fixed-width, rtl-language-support, right-sidebar, white, light, front-page-post-form, translation-ready, custom-background, custom-header, custom-menu, post-formats, sticky-post, theme-options
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+/* 
+CHANGELOG
+
+v1.1 - 07/10/2013
+added dropdown menu for category selection (thanks to Nobble)
+display categories in each post
+fixed "broken menu in Firefox" when using a custom header (thanks to lagerassasin)
+minor CSS improvements
+added P2 Turkish translation (thanks to erayaydin)
+added Brazilian Portuguese translation (thanks to Eduardo Zulian)
+
+v1.0 - March 2013
+started as a demo project to supplement an article I had written
+Thanks to evey contributor who brought us P2 1.5.1 - we love you all
+
 */
 
 /* The Reset ---------------------------------- */
@@ -47,10 +64,10 @@ pre, code {
 	min-height: 120px;
 	position: relative;
 }
-#header .sleeve {
-	display: inline-block;
+#header .sleeve {  
+	display: block; /* thanks to lagerassasin for this fix: http://wordpress.org/support/topic/menu-breaks-with-custom-header?replies=2 */
 	margin-top: 40px;
-}
+} 
 h1 {
 	display: inline-block;
 	padding: 8px 10px;
@@ -1865,3 +1882,36 @@ div.possibly-related {
 			background-size: 816px 16px;
 		}
 }
+
+/* =P2 Categories =
+--------------------------------------------------------- */
+/* position that drop down menu */
+#drop_cat {
+	margin-top: -35px;
+	margin-right: 20px;
+	float: right;
+	font-size: 1.6em;
+}
+
+/* give code sections a bit more padding */
+pre {
+	background: #eee;
+	padding: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+
+/* remove borders around images */
+#main p img {
+	border: none;
+}
+
+/* the search button is a bit close to the search box */
+#searchsubmit {
+	margin-left: 10px;
+}
+
+	
