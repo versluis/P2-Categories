@@ -47,7 +47,7 @@
             
             <!-- Nobble's Drop Down Categories -->
                 <select name="drop_cat" id="drop_cat">
-                   <option value=""><?php echo attribute_escape(__('Select Category')); ?></option>
+                   <option value=""><?php echo attribute_escape(__('Select a Category')); ?></option>
                    <?php
 				   // setup category options
 				   // as explained here: http://codex.wordpress.org/Function_Reference/get_categories
