@@ -1,6 +1,6 @@
 === P2 Categories ===
 
-a fork of the amazing P2 Theme by Automattic, with added support for categories
+a Child Theme for the amazing P2 Theme by Automattic, with added support for categories
 
 == Description ==
 
@@ -9,6 +9,8 @@ P2 has changed the way we blog. The original version does not allow us to add ou
 P2 Categories attempts to rectify this with a handy drop down menu right next to the famous post type buttons.
 
 Empty categories will show up in the drop down menu, but you can only create them from the admin interface at present (Posts - Categories - Create New)
+
+I've included several community suggestions for minor bug fixes that have not made it into the P2 Core yet.
 
 
 == Further reading ==
@@ -26,6 +28,9 @@ Official announcement post on WordPress.com:
 http://en.blog.wordpress.com/2009/03/11/p2-the-new-prologue/
 
 == Changelog ==
+
+= v1.2 - 11/10/2013 =
+* reworked the project as a Child Theme of P2 (thanks to Justin Tadlock for the suggestion)
 
 = v1.1 - October 2013 =
 * added dropdown menu for category selection (thanks to Nobble)
