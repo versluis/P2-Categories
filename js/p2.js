@@ -1017,7 +1017,7 @@ window.p2 = window.p2 || {};
 			var post_title = $('#posttitle').val();
 			var post_citation = $('#postcitation').val();
 			
-			// P2 Categories Mod
+			// P2 Categories: adds category post field to form
 			// as explained by Nobble: http://wordpress.org/support/topic/dropdown-category-selection-for-publishing-posts-in-p2-theme-v113?replies=27
 			var drop_cat = $('#drop_cat').val();
 			var args = {action: 'new_post', _ajax_post:nonce, posttext: posttext, tags: tags, post_format: post_format, drop_cat: drop_cat, post_title: post_title, post_citation: post_citation, post_subscribe: post_subscribe };
