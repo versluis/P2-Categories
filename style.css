@@ -152,6 +152,11 @@ body {
 @media only screen and (max-width: 480px) {
   /* Style adjustments for viewports 480px and under go here */
   	
+	/* at this resolution, Quote and Link are out! */
+	#link, #quote {
+		display: none;
+	}
+	
   	#header .sleeve {
   		padding: 0;
   		margin: 0;
@@ -171,7 +176,7 @@ body {
 	}
 	
 	#postbox {
-		background: #f1f1f1;
+		background: #fff;
 		min-height: 210px;
 	}
 	
@@ -208,6 +213,11 @@ body {
 
 @media only screen and (min-width: 768px) {
   /* Style adjustments for viewports 768px and over go here */
+  
+  /* at this resolution, Quote and Link are out! */
+	#link, #quote {
+		display: none;
+	}
 	
 	body {
 		width: 90%;
