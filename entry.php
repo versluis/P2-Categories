@@ -1,5 +1,6 @@
 <?php
 /**
+ * P2 Categories
  * Displays the content and meta information for a post object.
  *
  * @package P2
@@ -33,26 +34,7 @@
 			if ( ! is_page() ) {
 				echo p2_date_time_with_microformat();
 			} ?>
-			<span class="actions">
-				<a href="<?php the_permalink(); ?>" class="thepermalink<?php if ( is_singular() ) { ?> printer-only<?php } ?>" title="<?php esc_attr_e( 'Permalink', 'p2' ); ?>"><?php _e( 'Permalink', 'p2' ); ?></a>
-				<?php
-				if ( ! is_singular() )
-					$before_reply_link = ' | ';
-
-				if ( comments_open() && ! post_password_required() ) {
-						echo post_reply_link( array(
-							'before'        => isset( $before_reply_link ) ? $before_reply_link : '',
-							'after'         => '',
-							'reply_text'    => __( 'Reply', 'p2' ),
-							'add_below'     => 'comments'
-						), get_the_ID() );
-				}
-
-				if ( current_user_can( 'edit_post', get_the_ID() ) ) : ?> | <a href="<?php echo ( get_edit_post_link( get_the_ID() ) ); ?>" class="edit-post-link" rel="<?php the_ID(); ?>" title="<?php esc_attr_e( 'Edit', 'p2' ); ?>"><?php _e( 'Edit', 'p2' ); ?></a>
-				<?php endif; ?>
-
-				<?php do_action( 'p2_action_links' ); ?>
-			</span>
+			<!-- P2 Responsive: <span class="actions" section moved below content -->
 			<?php if ( is_object_in_taxonomy( get_post_type(), 'post_tag' ) ) : ?>
 				<span class="tags">
 					<?php tags_with_count( '', __( '<br />Tags:' , 'p2' ) .' ', ', ', ' &nbsp;' ); ?>&nbsp;
@@ -103,6 +85,28 @@
 			break;
 	} ?>
 	</div>
+    
+    <!-- P2 Responsive: added span class="actions" section here from further up -->
+    <span class="actions">
+				<a href="<?php the_permalink(); ?>" class="thepermalink<?php if ( is_singular() ) { ?> printer-only<?php } ?>" title="<?php esc_attr_e( 'Permalink', 'p2' ); ?>"><?php _e( 'Permalink', 'p2' ); ?></a>
+				<?php
+				if ( ! is_singular() )
+					$before_reply_link = ' | ';
+
+				if ( comments_open() && ! post_password_required() ) {
+						echo post_reply_link( array(
+							'before'        => isset( $before_reply_link ) ? $before_reply_link : '',
+							'after'         => '',
+							'reply_text'    => __( 'Reply', 'p2' ),
+							'add_below'     => 'comments'
+						), get_the_ID() );
+				}
+
+				if ( current_user_can( 'edit_post', get_the_ID() ) ) : ?> | <a href="<?php echo ( get_edit_post_link( get_the_ID() ) ); ?>" class="edit-post-link" rel="<?php the_ID(); ?>" title="<?php esc_attr_e( 'Edit', 'p2' ); ?>"><?php _e( 'Edit', 'p2' ); ?></a>
+				<?php endif; ?>
+
+				<?php do_action( 'p2_action_links' ); ?>
+			</span>
 
 	<?php
 	/*

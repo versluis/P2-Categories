@@ -3,15 +3,18 @@ Theme Name: P2 Categories
 Theme URI: https://github.com/versluis/P2-Categories
 Author: Jay Versluis
 Author URI: http://wpguru.co.uk
-Description: a Child Theme for the amazing P2 by Automattic, with added support for categories
+Description: a fully responsive Child Theme for the amazing P2 by Automattic, with added support for categories
 Template: p2
-Version: 1.2
+Version: 1.3 Beta
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: blue, custom-colors, two-columns, fixed-width, rtl-language-support, right-sidebar, white, light, front-page-post-form, translation-ready, custom-background, custom-header, custom-menu, post-formats, sticky-post, theme-options
+Tags: blue, custom-colors, two-columns, fixed-width, rtl-language-support, right-sidebar, white, light, front-page-post-form, translation-ready, custom-background, custom-header, custom-menu, post-formats, sticky-post, theme-options, responsive, categories
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
+
+Includes Modernizr (MIT License): http://modernizr.com
+Includes FitVids (WTFPL LIcense): http://fitvidsjs.com
 */
 
 /* grab parent's stylesheet */
@@ -62,4 +65,215 @@ pre {
 /* the category description */
 #p2CategoryDescription {
 	
+}
+
+/**************************************
+ **************************************
+/* =P2 Responsive=
+ * by Jonathan Warren
+ * https://github.com/nmec/p2-responsive
+ */
+ /* max-width on html, excessive width causing rendering issues */
+html {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+/* Mobile layout first */
+
+body {
+	width: 95%;
+	margin: 0 auto;
+}
+
+#header {
+	min-height: 0;
+}
+
+#wrapper {
+	background: white;
+}
+
+#wrapper, #header, #footer {
+	width: auto;
+}
+
+.sleeve_main {
+	margin-right: 0;
+}
+
+#postbox input#posttitle, 
+#postbox input#postcitation,
+#postbox textarea#posttext, textarea.posttext {
+	width: 96%;
+}
+
+#sidebar {
+	float: none;
+	width: auto;
+	background: #f7f7f7;
+}
+
+#postlist {
+	clear: both;
+}
+
+/* Make use of much space as possible on smaller screens */
+.postcontent {
+	padding-left: 0;
+}
+
+#main .actions {
+	float: right;
+	position: relative;
+}
+
+#main ul.commentlist {
+	margin-left: 0;	
+}
+
+.meta abbr {
+	display: block;
+}
+
+.tags br {
+	display: none;
+}
+
+/* Makes images responsive. Using 99% so images still have padding when wrapped with a caption */
+.hentry img,
+#sidebar img {
+	max-width: 99%;
+	height: auto;
+}
+
+/* media queries */
+
+@media only screen and (max-width: 480px) {
+  /* Style adjustments for viewports 480px and under go here */
+  	
+  	#header .sleeve {
+  		padding: 0;
+  		margin: 0;
+  		width: 100%;
+  	}
+  
+	#header {
+		font-size: 80%;
+	}
+	
+	#media-buttons {
+		display: none;
+	}
+	
+	.controls {
+		display: none;
+	}
+	
+	#postbox {
+		background: #f1f1f1;
+		min-height: 210px;
+	}
+	
+	#postbox .avatar {
+		display: none;
+	}
+	
+	#post-types {
+		margin-left: 0;
+		font-size: 9px;
+		padding-top: 4px;
+	}
+	
+	#postbox .inputarea {
+		padding-left: 0;
+	}
+	
+	#postbox input#tags {
+		width: 96%;
+	}
+	
+	#main #respond, .textedit {
+		margin-left: 0;
+		padding: 5px;
+	}
+	
+	#help,
+	#notify {
+		width: 70%;
+		left: 32%;
+		top: 15%;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+  /* Style adjustments for viewports 768px and over go here */
+	
+	body {
+		width: 90%;
+	}
+	
+	/* Responsive faux columns: http://www.alistapart.com/articles/fluid-images/ */
+	#wrapper {
+		background: white url(img/responsive-bg.png) repeat-y 75.6446217% 0;
+	}
+		
+	.sleeve_main {
+		width: 75%;
+		overflow: hidden;
+		float: left;
+	}
+	
+	.controls {
+		display: inline;
+	}
+
+	#sidebar {
+		float: right;
+		width: 21.6%;
+		background: none;
+	}
+	
+	.meta abbr {
+		display: inline;
+	}
+	
+	.tags br {
+		display: block;
+	}
+	
+	.postcontent {
+		padding-left: 60px;
+	}
+	
+	.actions {
+		visibility: hidden;
+	}
+	
+	.post:hover .actions {
+		visibility: visible;
+	}
+	
+	#main ul.commentlist {
+		margin-left: 60px;	
+	}
+	
+	/* Goes off the screen on smaller displays */
+	#help {
+		top: 30%;
+	}
+	
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1040px) {
+	#searchform input {
+		display: block;
+		float: none;
+	}
+	
+	#searchform #searchsubmit {
+		width: 40%;
+		height: 20px;
+		margin: 0;
+	}
 }
