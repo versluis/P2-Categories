@@ -36,3 +36,7 @@ You can find a demo of the original P2 theme by Automattic here:
 http://p2theme.com
 
 Check out my P2 User Guide at http://p2guide.wordpress.com
+
+This theme is under review on WordPress.org: 
+* http://themes.trac.wordpress.org/ticket/14909
+* http://themes.trac.wordpress.org/ticket/14751
