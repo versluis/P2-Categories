@@ -63,15 +63,25 @@
                 <!--//////////////////////////-->
                 <!-- list categories of this post -->
                 <!--//////////////////////////-->
-				<span class="categories">
-                <?php 
-				$separator = ' | ';
-				$parents = '';
-				$post_id = get_the_ID();
-				echo '<br>Categories: ';
-				echo get_the_category_list( $separator, $parents, $post_id ); 
-				?>	
-				</span>
+                <?php
+				// only list categories if this is not a page or the category is "Uncategorized"
+				// @since 1.4
+				if (!is_page()) {
+					if (!in_category('uncategorized')) { ?>
+                        <span class="categories">
+                        <?php 
+                        $separator = ' | ';
+                        $parents = '';
+                        $post_id = get_the_ID();
+                        echo '<br>Categories: ';
+                        echo get_the_category_list( $separator, $parents, $post_id ); 
+                        
+                        // display how many posts we have in a category
+                        $category = get_the_category(); 
+                        echo '<span class="p2CategoryCount"> ( ' . $category[0]->count .' )</span>';
+                        ?>	
+                        </span>
+                <?php }} // end if not page and category check ?>
 		</span>
 	</h4>
 
