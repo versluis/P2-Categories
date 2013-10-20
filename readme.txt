@@ -51,4 +51,4 @@ http://en.blog.wordpress.com/2009/03/11/p2-the-new-prologue/
 
 = v1.0 - March 2013 =
 * started as a demo project to supplement an article I had written
-* Thanks to evey contributor who brought us P2 1.5.1 - we love you all
+* Thanks to every contributor who brought us P2 1.5.1 - we love you all
