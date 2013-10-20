@@ -3,8 +3,7 @@ Theme Name: P2 Categories
 Theme URI: https://github.com/versluis/P2-Categories
 Author: Jay Versluis
 Author URI: http://wpguru.co.uk
-Description: a Child Theme for the amazing P2 by Automattic, with added support for categories
-Template: p2
+Description: a Fork of the amazing P2 by Automattic, with added support for categories
 Version: 1.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,8 +13,8 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
 
-/* grab parent's stylesheet */
-@import url("../p2/style.css");
+/* grab original stylesheet */
+@import url("p2-style.css");
 
 /* =P2 bug fixes= */
 #header .sleeve {  

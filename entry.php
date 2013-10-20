@@ -77,8 +77,8 @@
                         echo get_the_category_list( $separator, $parents, $post_id ); 
                         
                         // display how many posts we have in a category
-                        $category = get_the_category(); 
-                        echo '<span class="p2CategoryCount"> ( ' . $category[0]->count .' )</span>';
+                        $metaCategory = get_the_category(); 
+                        echo '<span class="p2CategoryCount"> ( ' . $metaCategory[0]->count .' )</span>';
                         ?>	
                         </span>
                 <?php }} // end if not page and category check ?>

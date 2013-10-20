@@ -1,6 +1,6 @@
 === P2 Categories ===
 
-a Child Theme for the amazing P2 Theme by Automattic, with added support for categories
+a Fork of the amazing P2 Theme by Automattic, with added support for categories
 
 == Description ==
 
@@ -33,6 +33,8 @@ http://en.blog.wordpress.com/2009/03/11/p2-the-new-prologue/
 * removed category display from archive pages
 * categories are not shown if posts are in "uncategorized"
 * added post count to category meta display (just like P2 tags)
+* it's a fork again, it's no longer a child theme
+* (category posting didn't work as a child, hence the change back)
 
 = v1.3 =
 * no changes from v1.2

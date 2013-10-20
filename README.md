@@ -1,11 +1,13 @@
 P2 Categories
 =============
 
-This is a Child Theme for Automattic's P2, with added support for posting into categories via a handy drop-down menu on the front page. 
+This is a Fork of Automattic's P2 Theme, with added support for posting into categories via a handy drop-down menu on the front page. 
 
-This project has evolved from an article I've written which explained how to bring back posting into categories. The full process is explained here: http://wpguru.co.uk/2012/04/how-to-bring-back-post-categories-in-p2/
+This project has evolved from an article I've written which explained how to bring back posting into categories. The full process is explained here: http://wpguru.co.uk/2013/10/how-to-add-drop-down-categories-to-automattics-p2-theme/
 
-What served as a working example is now a fully working theme which is compatible with Automattic's wonderful P2 Theme.
+What served as a working example is now a fully working theme which is compatible with Automattic's wonderful P2 (which is sadly no longer in development).
+
+I have included several community suggested bug fixes and improvements that have not yet made it into P2 Core.
 
 
 Installation
