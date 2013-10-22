@@ -29,6 +29,9 @@ http://en.blog.wordpress.com/2009/03/11/p2-the-new-prologue/
 
 == Changelog ==
 
+= v1.4.1 - 22/11/2013
+* added additional license statement required by WordPress.org theme review team
+
 = v1.4 - 20/11/2013 =
 * removed category display from archive pages
 * categories are not shown if posts are in "uncategorized"
