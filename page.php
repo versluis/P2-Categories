@@ -1,6 +1,10 @@
 <?php
 /**
- * Author template.
+ * P2 Categories
+ * Page Template 
+ * since @1.5
+ * 
+ * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  * @package P2
  */
@@ -12,11 +16,9 @@
 		<?php locate_template( array( 'post-form.php' ), true ); ?>
 	<?php endif; ?>
 	<div id="main">
-
-		<?php if ( have_posts() ) : ?>
-
 		<h2>
-			<?php printf( _x( 'Updates from %s', 'Author name', 'p2' ), p2_get_archive_author() ); ?>
+
+			<?php echo get_the_title(); ?>
 
 			<span class="controls">
 				<a href="#" id="togglecomments"> <?php _e( 'Toggle Comment Threads', 'p2' ); ?></a> | <a href="#directions" id="directions-keyboard"><?php _e( 'Keyboard Shortcuts', 'p2' ); ?></a>
@@ -24,17 +26,20 @@
 		</h2>
 
 		<ul id="postlist">
+		<?php if ( have_posts() ) : ?>
+
 			<?php while ( have_posts() ) : the_post(); ?>
 	    		<?php p2_load_entry(); ?>
 			<?php endwhile; ?>
-		</ul>
 
 		<?php else : ?>
 
-		<h2><?php _e( 'Not Found', 'p2' ); ?></h2>
-		<p><?php _e( 'Apologies, looks like this author does not have any posts.', 'p2' ); ?></p>
+			<li class="no-posts">
+		    	<h3><?php _e( 'No posts yet!', 'p2' ); ?></h3>
+			</li>
 
-		<?php endif; // end have_posts() ?>
+		<?php endif; ?>
+		</ul>
 
 		<div class="navigation">
 			<p class="nav-older"><?php next_posts_link( __( '&larr; Older posts', 'p2' ) ); ?></p>

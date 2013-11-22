@@ -4,12 +4,12 @@ Theme URI: https://github.com/versluis/P2-Categories
 Author: Jay Versluis
 Author URI: http://wpguru.co.uk
 Description: a Fork of the amazing P2 by Automattic, with added support for categories
-Version: 1.4.1
+Version: 1.5
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blue, custom-colors, two-columns, fixed-width, rtl-language-support, right-sidebar, white, light, front-page-post-form, translation-ready, custom-background, custom-header, custom-menu, post-formats, sticky-post, theme-options
 
-No additional resources were used in making this theme. This is a straight fork of the orginial P2 Theme, with additional code and style amendments made by me, the author of P2 Categories.
+No additional resources were used in making this theme. This is a straight fork of the orginial P2 Theme (Version 1.5.2), with additional code and style amendments made by me, the author of P2 Categories.
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
@@ -31,7 +31,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	margin-top: -35px;
 	margin-right: 20px;
 	float: right;
-	font-size: 1.6em;
+	font-size: 1.4em;
 }
 /* give code sections a bit more padding */
 pre {
