@@ -13,15 +13,13 @@ I have included several community suggested bug fixes and improvements that have
 Installation
 ============
 
-This entire project is a WordPress Child Theme. Download and install the P2 Parent Theme first, then install and activate P2 Categories (install it like any other theme).
-
-You can find P2 either by searching in the WordPress admin menu, or you can download it from here: http://wordpress.org/themes/p2
+This entire project is a WordPress Theme. Download and install just like any other theme, either by uploading this repo as a ZIP, or by searching for "p2" under Appearance - Themes - Install.
 
 
-How do P2 Categories work, and how do I use them?
+How does P2 Categories work, and how do I use it?
 =================================================
 
-Simply write your post from the front page, then select a category from the drop down menu and hit post. 
+Simply write your post from the front page (as you do on P2), then select a category from the drop down menu and hit post. 
 
 The menu only shows existing categories, even empty ones. You cannot create new categories from the front page though. To do so, please use the admin interface and head over to Posts - Categories, then add a new category.
 

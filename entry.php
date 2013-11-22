@@ -72,7 +72,7 @@
 					if (!in_category('uncategorized')) { ?>
                         <span class="categories">
                         <?php 
-                        $separator = ' | ';
+                        $separator = ', ';
                         $parents = '';
                         $post_id = get_the_ID();
                         echo '<br>Categories: ';

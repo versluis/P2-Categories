@@ -29,10 +29,16 @@ http://en.blog.wordpress.com/2009/03/11/p2-the-new-prologue/
 
 == Changelog ==
 
-= v1.4.1 - 22/11/2013
+= 1.5 - 22/11/2013
+* merged changes from P2 - Version 1.5.2 (see p2-readme.txt for details)
+* added Page template, showing the proper title rather than "Updates from xxx" on pages
+* tweaked styling of the Category Drop Down menu
+
+
+= v1.4.1 - 22/10/2013
 * added additional license statement required by WordPress.org theme review team
 
-= v1.4 - 20/11/2013 =
+= v1.4 - 20/10/2013 =
 * removed category display from archive pages
 * categories are not shown if posts are in "uncategorized"
 * added post count to category meta display (just like P2 tags)
