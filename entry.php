@@ -64,6 +64,8 @@
                 <!-- list categories of this post -->
                 <!--//////////////////////////-->
                 <?php
+				
+				// P2 Categories
 				// only list categories if this is not a page or the category is "Uncategorized"
 				// @since 1.4
 				if (!is_page()) {

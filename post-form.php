@@ -49,8 +49,11 @@
                 <select name="drop_cat" id="drop_cat">
                    <option value=""><?php echo esc_attr(__('Select a Category', 'p2' )); ?></option>
                    <?php
+				   
+				   // P2 Categories
 				   // setup category options
 				   // as explained here: http://codex.wordpress.org/Function_Reference/get_categories
+				   
                    $args = array (
 								  'type'           => 'post',
 								  'child_of'       => 0,
