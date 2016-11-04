@@ -23,6 +23,11 @@ Simply write your post from the front page (as you do on P2), then select a cate
 
 The menu only shows existing categories, even empty ones. You cannot create new categories from the front page though. To do so, please use the admin interface and head over to Posts - Categories, then add a new category.
 
+Known Issues
+============
+
+The category drop-down menu no longer works in Safari 10 on a Mac. Still works fine in Firefox and Microsoft Edge. 
+
 
 Further Reading
 ================
