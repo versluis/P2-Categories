@@ -26,7 +26,7 @@ The menu only shows existing categories, even empty ones. You cannot create new 
 Known Issues
 ============
 
-The category drop-down menu no longer works in Safari 10 on a Mac. Still works fine in Firefox and Microsoft Edge. 
+The category drop-down menu no longer works in Safari 10 on a Mac. Still works fine in Firefox and Microsoft Edge, and Safari 9. Thanks, Apple!
 
 
 Further Reading
