@@ -70,7 +70,7 @@
             if (!is_page()) {
                 if (!in_category('uncategorized')) { ?>
                     <span class="categories">
-                    <?php 
+                    <?php /*
                     $separator = ', ';
                     $parents = '';
                     $post_id = get_the_ID();
@@ -78,9 +78,13 @@
                     echo get_the_category_list( $separator, $parents, $post_id ); 
                     
                     // display how many posts we have in a category
-                    $metaCategory = get_the_category(); 
-                    echo '<span class="p2CategoryCount"> ( ' . $metaCategory[0]->count .' )</span>';
-                    ?>	
+                    // $metaCategory = get_the_category(); 
+                    // echo '<span class="p2CategoryCount"> ( ' . $metaCategory[0]->count .' )</span>';
+                    */
+					?>	
+                    
+                    <?php cats_with_count( '', __( '<br />Categories:' , 'p2' ) .' ', ', ', ' &nbsp;' ); ?>&nbsp;
+                    
                     </span>
             <?php }} // end if not page and category check ?>
             <!-- end of List Categories -->

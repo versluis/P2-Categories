@@ -3,6 +3,9 @@
  * @package P2
  */
 
+// support for P2 Categories functions
+require_once ( get_template_directory() . '/functions-p2-categories.php');
+
 require_once( get_template_directory() . '/inc/utils.php' );
 
 p2_maybe_define( 'P2_INC_PATH', get_template_directory()     . '/inc' );
@@ -38,6 +41,8 @@ class P2 {
 	 * @var array
 	 */
 	var $components = array();
+	
+	
 
 	/**
 	 * Includes and instantiates the various P2 components.

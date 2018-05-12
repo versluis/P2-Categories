@@ -44,6 +44,7 @@
 			<form id="new_post" name="new_post" method="post" action="<?php echo site_url(); ?>/">
             
             <!-- P2 Categories Tweak -->
+            
             <select name="drop_cat" id="drop_cat">
             <option value=""><?php echo esc_attr(__('Select a Category', 'p2' )); ?></option>
             <?php
@@ -77,6 +78,7 @@
              ?>
              </select>
              <!-- P2 Categories End -->
+			 
             
 				<?php if ( 'status' == $post_format || empty( $post_format ) ) : ?>
 				<label for="posttext" id="post-prompt">
