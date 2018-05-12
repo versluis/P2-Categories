@@ -6,7 +6,7 @@
  */
 
 class P2Ajax_Read {
-	function dispatch() {
+	static function dispatch() {
 		$action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '';
 
 		do_action( "p2_ajax", $action );
@@ -22,12 +22,12 @@ class P2Ajax_Read {
 	/*
 	 * Is the viewer logged in or not?
 	 */
-	function logged_in_out() {
+	static function logged_in_out() {
 		check_ajax_referer( 'ajaxnonce', '_loggedin' );
 		echo is_user_logged_in() ? 'logged_in' : 'not_logged_in';
 	}
 
-	function tag_search() {
+	static function tag_search() {
 		global $wpdb;
 		$term = $_GET['term'];
 		if ( false !== strpos( $term, ',' ) ) {
@@ -39,7 +39,7 @@ class P2Ajax_Read {
 			die(); // require 2 chars for matching
 
 		$tags = array();
-		$results = $wpdb->get_results( "SELECT name, count FROM $wpdb->term_taxonomy AS tt INNER JOIN $wpdb->terms AS t ON tt.term_id = t.term_id WHERE tt.taxonomy = 'post_tag' AND t.name LIKE ( '%". like_escape( $wpdb->escape( $term ) ) . "%' ) ORDER BY count DESC" );
+		$results = $wpdb->get_results( "SELECT name, count FROM $wpdb->term_taxonomy AS tt INNER JOIN $wpdb->terms AS t ON tt.term_id = t.term_id WHERE tt.taxonomy = 'post_tag' AND t.name LIKE ( '%". $wpdb->escape( $wpdb->esc_like( $term ) ) . "%' ) ORDER BY count DESC" );
 
 		foreach ( $results as $result ) {
 			$rterm = '/' . preg_quote( $term, '/' ) . '/i';
@@ -54,7 +54,7 @@ class P2Ajax_Read {
 		echo json_encode( $tags );
 	}
 
-	function get_latest_posts() {
+	static function get_latest_posts() {
 		global $post_request_ajax;
 
 		$load_time = $_GET['load_time'];
@@ -97,7 +97,7 @@ class P2Ajax_Read {
 		}
 	}
 
-	function get_latest_comments() {
+	static function get_latest_comments() {
 		global $wpdb, $comments, $comment, $max_depth, $depth, $user_login, $user_ID, $user_identity;
 
 		$number = 10; //max amount of comments to load
@@ -168,7 +168,7 @@ class P2Ajax_Read {
 	 * Create a comment.
 	 * The Exception: the comment creation endpoint is public (it's not in /wp-admin/).
 	 */
-	function new_comment() {
+	static function new_comment() {
 		if ( empty( $_POST['action'] ) || $_POST['action'] != 'new_comment' )
 		    die();
 
