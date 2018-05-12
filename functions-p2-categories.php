@@ -2,7 +2,6 @@
 /*
 /* P2 Categories functions
 /* @since 1.6
-
  */
  
 function get_cats_with_count( $post, $format = 'list', $before = '', $sep = '', $after = '' ) {

@@ -70,7 +70,9 @@
             if (!is_page()) {
                 if (!in_category('uncategorized')) { ?>
                     <span class="categories">
-                    <?php /*
+                    <?php 
+					/*
+					// moved this section to separate functions file
                     $separator = ', ';
                     $parents = '';
                     $post_id = get_the_ID();
@@ -83,7 +85,10 @@
                     */
 					?>	
                     
-                    <?php cats_with_count( '', __( '<br />Categories:' , 'p2' ) .' ', ', ', ' &nbsp;' ); ?>&nbsp;
+                    <?php 
+					// new function to display P2 Categories on the front page 
+					// @since 1.6
+					cats_with_count( '', __( '<br />Categories:' , 'p2' ) .' ', ', ', ' &nbsp;' ); ?>&nbsp;
                     
                     </span>
             <?php }} // end if not page and category check ?>
