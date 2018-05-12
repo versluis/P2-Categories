@@ -1,12 +1,13 @@
 <?php
 /**
- * Category Archive Template.
+ * P2 Categories
+ * Category Template.
  *
  * @package P2
  */
 ?>
 <?php get_header(); ?>
-<?php $tag_obj = $wp_query->get_queried_object_id(); ?>
+<?php $tag_obj = $wp_query->get_queried_object(); ?>
 
 <div class="sleeve_main">
 
