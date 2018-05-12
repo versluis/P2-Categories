@@ -56,7 +56,7 @@ class P2 {
 		require_once( P2_INC_PATH . "/template-tags.php" );
 
 		// Logged-out/unprivileged users use the add_feed() + ::ajax_read() API rather than the /admin-ajax.php API
-		// current_user_can( 'read' ) should be equivalent to is_user_member_of_blog() || is_super_admin()
+		// current_user_can( 'read' ) should be equivalent to is_user_member_of_blog()
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX && ( p2_user_can_post() || current_user_can( 'read' ) ) )
 			$includes[] = 'ajax';
 
@@ -214,9 +214,10 @@ add_filter( 'after_setup_theme', 'p2_setup' );
 function p2_register_sidebar() {
 	register_sidebar( array(
 		'name' => __( 'Sidebar', 'p2' ),
+		'id'   => 'sidebar-1',
 	) );
 }
-add_filter( 'widgets_init', 'p2_register_sidebar' );
+add_action( 'widgets_init', 'p2_register_sidebar' );
 
 function p2_background_color() {
 	$background_color = get_option( 'p2_background_color' );
@@ -303,7 +304,7 @@ function p2_the_title( $before = '<h2>', $after = '</h2>', $echo = true ) {
 	global $post;
 
 	$temp = $post;
-	$t = apply_filters( 'the_title', $temp->post_title );
+	$t = apply_filters( 'the_title', $temp->post_title, $temp->ID );
 	$title = $temp->post_title;
 	$content = $temp->post_content;
 	$pos = 0;
@@ -335,10 +336,10 @@ function p2_the_title( $before = '<h2>', $after = '</h2>', $echo = true ) {
 	if ( '' == $title )
 		return false;
 
-	// Avoid processing the title if it's the very first part of the post content
-	// Which is the case with most "status" posts
+	// Avoid processing the title if it's the very first part of the post content,
+	// which is the case with most "status" posts
 	$pos = strpos( $content, $title );
-	if ( false === $pos || 0 < $pos ) {
+	if ( '' == get_post_format() || false === $pos || 0 < $pos ) {
 		if ( is_single() )
 			$out = $before . $t . $after;
 		else
@@ -410,7 +411,6 @@ function get_tags_with_count( $post, $format = 'list', $before = '', $sep = '', 
 	foreach ( $posttags as $tag ) {
 		if ( $tag->count > 1 && !is_tag($tag->slug) ) {
 			$tag_link = '<a href="' . get_tag_link( $tag ) . '" rel="tag">' . $tag->name . ' ( ' . number_format_i18n( $tag->count ) . ' )</a>';
-		
 		} else {
 			$tag_link = $tag->name;
 		}
@@ -526,20 +526,6 @@ function p2_new_post_noajax() {
 	exit;
 }
 add_filter( 'template_redirect', 'p2_new_post_noajax' );
-
-/**
- * iPhone viewport meta tag.
- *
- * Hooks into the wp_head action late.
- *
- * @uses p2_is_iphone()
- * @since P2 1.4
- */
-function p2_viewport_meta_tag() {
-	if ( p2_is_iphone() )
-		echo '<meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no"/>';
-}
-add_action( 'wp_head', 'p2_viewport_meta_tag', 1000 );
 
 /**
  * iPhone Stylesheet.
@@ -700,7 +686,7 @@ function p2_get_supported_post_formats( $type = 'all' ) {
 function p2_is_iphone() {
 	$output = false;
 
-	if ( ( strstr( $_SERVER['HTTP_USER_AGENT'], 'iPhone' ) && ! strstr( $_SERVER['HTTP_USER_AGENT'], 'iPad' ) ) || isset( $_GET['iphone'] ) && $_GET['iphone'] )
+	if ( ( isset( $_SERVER['HTTP_USER_AGENT'] ) && strstr( $_SERVER['HTTP_USER_AGENT'], 'iPhone' ) && ! strstr( $_SERVER['HTTP_USER_AGENT'], 'iPad' ) ) || isset( $_GET['iphone'] ) && $_GET['iphone'] )
 		$output = true;
 
 	$output = (bool) apply_filters( 'p2_is_iphone', $output );

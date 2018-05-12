@@ -56,34 +56,35 @@
 			<?php if ( is_object_in_taxonomy( get_post_type(), 'post_tag' ) ) : ?>
 				<span class="tags">
 					<?php tags_with_count( '', __( '<br />Tags:' , 'p2' ) .' ', ', ', ' &nbsp;' ); ?>&nbsp;
-                    
 				</span>
-                <?php endif; ?>
-                
-                <!--//////////////////////////-->
-                <!-- list categories of this post -->
-                <!--//////////////////////////-->
-                <?php
-				
-				// P2 Categories
-				// only list categories if this is not a page or the category is "Uncategorized"
-				// @since 1.4
-				if (!is_page()) {
-					if (!in_category('uncategorized')) { ?>
-                        <span class="categories">
-                        <?php 
-                        $separator = ', ';
-                        $parents = '';
-                        $post_id = get_the_ID();
-                        echo '<br>Categories: ';
-                        echo get_the_category_list( $separator, $parents, $post_id ); 
-                        
-                        // display how many posts we have in a category
-                        $metaCategory = get_the_category(); 
-                        echo '<span class="p2CategoryCount"> ( ' . $metaCategory[0]->count .' )</span>';
-                        ?>	
-                        </span>
-                <?php }} // end if not page and category check ?>
+			<?php endif; ?>
+            
+            <!--//////////////////////////-->
+            <!-- list categories of this post -->
+            <!--//////////////////////////-->
+            <?php
+            
+            // P2 Categories
+            // only list categories if this is not a page or the category is "Uncategorized"
+            // @since 1.4
+            if (!is_page()) {
+                if (!in_category('uncategorized')) { ?>
+                    <span class="categories">
+                    <?php 
+                    $separator = ', ';
+                    $parents = '';
+                    $post_id = get_the_ID();
+                    echo '<br>Categories: ';
+                    echo get_the_category_list( $separator, $parents, $post_id ); 
+                    
+                    // display how many posts we have in a category
+                    $metaCategory = get_the_category(); 
+                    echo '<span class="p2CategoryCount"> ( ' . $metaCategory[0]->count .' )</span>';
+                    ?>	
+                    </span>
+            <?php }} // end if not page and category check ?>
+            <!-- end of List Categories -->
+            
 		</span>
 	</h4>
 
