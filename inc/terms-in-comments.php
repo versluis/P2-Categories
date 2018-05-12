@@ -10,7 +10,7 @@ class P2_Terms_In_Comments {
 	var $taxonomy;
 	var $meta_key;
 
-    // P2 Categores
+    // P2 Categories
 	// fixed PHP 7 deprecation - was P2_Terms_In_Comments( $taxonomy, $meta_key = false )
 	// @since 1.6
 	function P2_Terms_In_Comments() {}
