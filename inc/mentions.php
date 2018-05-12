@@ -17,8 +17,13 @@ class P2_Mentions extends P2_Terms_In_Comments {
 	var $names          = array();
 	var $users          = array();
 	var $mentions_regex = '/\B@([\w-\.]+)\b/';
-
-	function P2_Mentions() {
+    
+	// P2 Categories
+	// PHP 7 deprecation fix - was P2_Mentions()
+	// @since 1.6
+	function P2_Mentions () {}
+	function __construct() {
+		
 		p2_maybe_define( 'P2_MENTIONS_TAXONOMY', 'mentions', 'p2_mentions_taxonomy' );
 		p2_maybe_define( 'P2_MENTIONS_SLUG',     'mentions', 'p2_mentions_slug'     );
 

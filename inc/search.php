@@ -7,8 +7,12 @@
  */
 
 class P2_Search {
-
-	function P2_Search() {
+    
+	// P2 Categories 
+	// PHP 7 deprecation fix - was P2_Search()
+	// @since 1.6
+	function P2_Search() {}
+	function __construct() {
 		// Bind search query filters
 		add_filter( 'posts_distinct',   array( &$this, 'search_comments_distinct' ) );
 		add_filter( 'posts_where',      array( &$this, 'search_comments_where'    ) );

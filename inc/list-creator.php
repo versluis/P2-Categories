@@ -36,8 +36,12 @@
  */
 class P2_Post_List_Creator extends P2_List_Creator {
 	var $form_action_name = 'p2-post-task-list';
-
-	function P2_Post_List_Creator() {
+    
+	// P2 Categories
+	// PHP 7 deprecation fix - was P2_Post_List_Creator()
+	function P2_Post_List_Creator() {}
+	function __construct() {
+		
 		parent::P2_List_Creator();
 
 		// Parse everything on display
@@ -180,8 +184,10 @@ class P2_Post_List_Creator extends P2_List_Creator {
  */
 class P2_Comment_List_Creator extends P2_List_Creator {
 	var $form_action_name = 'p2-comment-task-list';
-
-	function P2_Comment_List_Creator() {
+    
+	// P2 Categories 
+	// PHP 7 deprecation fix - was P2_Comment_List_Creator()
+	function __construct() {
 		parent::P2_List_Creator();
 
 		// Parse everything on display
@@ -356,7 +362,11 @@ class P2_List_Creator {
 
 	var $preserved_texts = array();
 
-	function P2_List_Creator() {
+    // P2 Categories
+	// PHP 7 deprecation fix - was P2_List_Creator()
+	// @since 1.6
+	function P2_List_Creator() {}
+	function __construct() {
 		// Have we done the CSS/JS already?
 		static $did_header = false;
 

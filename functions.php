@@ -14,6 +14,7 @@ p2_maybe_define( 'P2_JS_PATH',  get_template_directory()     . '/js'  );
 p2_maybe_define( 'P2_JS_URL',   get_template_directory_uri() . '/js'  );
 
 class P2 {
+	
 	/**
 	 * DB version.
 	 *
@@ -47,7 +48,9 @@ class P2 {
 	/**
 	 * Includes and instantiates the various P2 components.
 	 */
-	function P2() {
+	 // P2 Categories
+	 // fixed PHP 7 deprecation - was function P2()
+	function __construct() {
 		// Fetch options
 		$this->options = get_option( $this->option_name );
 		if ( false === $this->options )
