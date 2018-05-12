@@ -197,11 +197,13 @@ class P2_JS {
 
 	static function print_options() {
 		$mentions = p2_get( 'mentions' );
-
-        // P2 Categories: fixed use of deprecated function
+	
+		// P2 Categories: fixed use of deprecated function
 		// get_currentuserinfo();
 		// @since 1.6
-		wp_get_current_user();
+		$current_user = wp_get_current_user();
+		if (!($current_user instanceof WP_User)) return;
+		
 		$page_options['nonce']= wp_create_nonce( 'ajaxnonce' );
 		$page_options['prologue_updates'] = 1;
 		$page_options['prologue_comments_updates'] = 1;
