@@ -83,8 +83,10 @@ window.p2 = window.p2 || {};
 		  cache: false
 		});
 
-		if(!window.location.href.match('#'))
+		// Only focus textarea if not not on Customizer and URL has no hash
+		if( ! window.location.href.match('#') && ! ( ( window.wp || {} ).customize instanceof Function) ) {
 			$('#posttext').focus();
+		}
 
 		// ------------------------------------------------
 		// Events
@@ -867,7 +869,7 @@ window.p2 = window.p2 || {};
 								}
 							}
 							tearDownEditor();
-							
+
 							$( document ).trigger( 'p2_edit_post_submit', { 'post_id' : postId, 'result' : result } );
 						},
 						'json');
@@ -1021,11 +1023,14 @@ window.p2 = window.p2 || {};
 			var post_format = $('#post_format').val();
 			var post_title = $('#posttitle').val();
 			var post_citation = $('#postcitation').val();
+
+			// var args = {action: 'new_post', _ajax_post:nonce, posttext: posttext, tags: tags, post_format: post_format, post_title: post_title, post_citation: post_citation, post_subscribe: post_subscribe };
 			
-			// P2 Categories: adds category post field to form
-			// as explained by Nobble: http://wordpress.org/support/topic/dropdown-category-selection-for-publishing-posts-in-p2-theme-v113?replies=27
+			// P2 Categories Tweak
 			var drop_cat = $('#drop_cat').val();
-			var args = {action: 'new_post', _ajax_post:nonce, posttext: posttext, tags: tags, post_format: post_format, drop_cat: drop_cat, post_title: post_title, post_citation: post_citation, post_subscribe: post_subscribe };
+            var args = {action: 'new_post', _ajax_post:nonce, posttext: posttext, tags: tags, post_format: post_format, drop_cat: drop_cat, post_title: post_title, post_citation: post_citation, post_subscribe: post_subscribe };
+			// P2 Categories End
+			
 			var errorMessage = '';
 			$.ajax({
 				type: "POST",
@@ -1297,8 +1302,9 @@ window.p2 = window.p2 || {};
 			alink.hover(function(e){
 				this.t = this.title;
 				this.title = "";
-				$("body").append("<div id='tooltip'>"+ this.t +"</div>");
+				$("body").append("<div id='tooltip'></div>");
 				$("#tooltip")
+					.text( this.t )
 					.css("top",(e.pageY - yOffset) + "px")
 					.css("left",(e.pageX + xOffset) + "px")
 					.fadeIn("fast");
@@ -1353,4 +1359,3 @@ window.p2 = window.p2 || {};
 		}
 	};
 })( jQuery );
-

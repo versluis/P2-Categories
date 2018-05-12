@@ -22,7 +22,7 @@ if ( defined('DOING_AJAX') && DOING_AJAX && isset( $_REQUEST['p2ajax'] ) ) {
  * By the time the next release rolls around, it'll be safe to remove.
  */
 class P2Ajax extends P2Ajax_Read {
-	function dispatch() {
+	static function dispatch() {
 		$action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '';
 
 		do_action( "p2_ajax", $action );
@@ -36,7 +36,7 @@ class P2Ajax extends P2Ajax_Read {
 	/*
 	 * Get post to edit.
 	 */
-	function get_post() {
+	static function get_post() {
 		check_ajax_referer( 'ajaxnonce', '_inline_edit' );
 		if ( !is_user_logged_in() ) {
 			die( '<p>'.__( 'Error: not logged in.', 'p2' ).'</p>' );
@@ -80,7 +80,7 @@ class P2Ajax extends P2Ajax_Read {
 	/*
 	 * Get comment to edit.
 	 */
-	function get_comment() {
+	static function get_comment() {
 		check_ajax_referer( 'ajaxnonce', '_inline_edit' );
 		if ( !is_user_logged_in() ) {
 			die( '<p>'.__( 'Error: not logged in.', 'p2' ).'</p>' );
@@ -94,7 +94,7 @@ class P2Ajax extends P2Ajax_Read {
 	/*
 	 * Edit a post.
 	 */
-	function save_post() {
+	static function save_post() {
 		check_ajax_referer( 'ajaxnonce', '_inline_edit' );
 		if ( !is_user_logged_in() ) {
 			die( '<p>'.__( 'Error: not logged in.', 'p2' ).'</p>' );
@@ -155,7 +155,7 @@ class P2Ajax extends P2Ajax_Read {
 	/*
 	 * Edit a comment.
 	 */
-	function save_comment() {
+	static function save_comment() {
 		check_ajax_referer( 'ajaxnonce', '_inline_edit' );
 		if ( !is_user_logged_in() ) {
 			die( '<p>'.__( 'Error: not logged in.', 'p2' ).'</p>' );
@@ -183,8 +183,33 @@ class P2Ajax extends P2Ajax_Read {
 	/*
 	 * Create a post.
 	 */
-	function new_post() {
+	static function new_post() {
 		global $user_ID;
+		
+		// P2 Categories
+		// this will give us the category slug
+		$drop_cat = $_POST['drop_cat'];
+		
+		// if nothing was selected, use the default category
+		if ($drop_cat == '') {
+			
+			$drop_cat = get_option('default_category');
+			// in this case we already have the category ID
+			$tag = array( $drop_cat );
+			$taxonomy = 'category';
+			wp_set_post_terms( $post_id, $tag, $taxonomy );
+		
+		} else {
+			// otherwise, let's convert the slug into an ID
+			$post_cat_object = get_category_by_slug( $drop_cat );
+			$post_cat_ID = $post_cat_object -> term_id;
+			
+			// now we define the category ID
+			$tag = array( $post_cat_ID );
+			$taxonomy = 'category';
+			wp_set_post_terms( $post_id, $tag, $taxonomy );
+		}
+		// P2 Categories End
 
 		if ( empty( $_POST['action'] ) || $_POST['action'] != 'new_post' ) {
 		    die( '-1' );
@@ -226,8 +251,6 @@ class P2Ajax extends P2Ajax_Read {
 		if ( ! empty( $_POST['post_citation'] ) && 'quote' == $post_format )
 			$post_content = '<p>' . $post_content . '</p><cite>' . $_POST['post_citation'] . '</cite>';
 
-		
-		// this creates the post
 		$post_id = wp_insert_post( array(
 			'post_author'   => $user_id,
 			'post_title'    => $post_title,
@@ -236,39 +259,7 @@ class P2Ajax extends P2Ajax_Read {
 			'tags_input'    => $tags,
 			'post_status'   => 'publish'
 		) );
-		
-		
-		/*****************************/
-		/* P2 Categories Mod         */
-		/* starts here               */
-		/*****************************/
 
-		// this will give us the category slug
-		$drop_cat = $_POST['drop_cat'];
-		// if nothing was selected, use the default category
-		if ($drop_cat == '') {
-			
-			$drop_cat = get_option('default_category');
-			// in this case we already have the category ID
-			$tag = array( $drop_cat );
-			$taxonomy = 'category';
-			wp_set_post_terms( $post_id, $tag, $taxonomy );
-		
-		} else {
-			// let's convert the slug into an ID
-			// as explained here: http://codex.wordpress.org/Function_Reference/get_category_by_slug
-			$post_cat_object = get_category_by_slug( $drop_cat );
-			$post_cat_ID = $post_cat_object -> term_id;
-			
-			// now we define the category ID
-			// as explained here: http://codex.wordpress.org/Function_Reference/wp_set_post_terms
-			$tag = array( $post_cat_ID );
-			$taxonomy = 'category';
-			wp_set_post_terms( $post_id, $tag, $taxonomy );
-		}
-		/* END OF CATEGORIES MOD */
-		
-		
 		if ( empty( $post_id ) )
 			echo '0';
 
