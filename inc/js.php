@@ -60,7 +60,7 @@ class P2_JS {
 			'p2-user-bundle',
 			P2_JS_URL . '/p2.user.bundle.js',
 			array( 'jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-position' ),
-			'20110405' );
+			'20130819' );
 
 		wp_register_script(
 			'scrollit',
@@ -121,7 +121,7 @@ class P2_JS {
 		wp_enqueue_script( 'p2js',
 			P2_JS_URL . '/p2.js',
 			$depends,
-			'20131101'
+			'20140603'
 		);
 
 		wp_localize_script( 'p2js', 'p2txt', array(
@@ -180,7 +180,7 @@ class P2_JS {
 		<?php
 	}
 
-	function ajax_url() {
+	static function ajax_url() {
 		global $current_blog;
 
 		// Generate the ajax url based on the current scheme
@@ -191,7 +191,7 @@ class P2_JS {
 		return $admin_url;
 	}
 
-	function ajax_read_url() {
+	static function ajax_read_url() {
 		return add_query_arg( 'p2ajax', 'true', get_feed_link( 'p2.ajax' ) );
 	}
 
@@ -237,7 +237,6 @@ class P2_JS {
 			var wpUrl                   = "<?php echo esc_js( site_url() ); ?>";
 			var rssUrl                  = "<?php esc_js( get_bloginfo( 'rss_url' ) ); ?>";
 			var pageLoadTime            = "<?php echo gmdate( 'Y-m-d H:i:s' ); ?>";
-			// var original_title          = document.title;
 			var commentsOnPost          = new Array;
 			var postsOnPage             = new Array;
 			var postsOnPageQS           = '';
