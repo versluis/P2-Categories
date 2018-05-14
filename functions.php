@@ -3,7 +3,8 @@
  * @package P2
  */
 
-// support for P2 Categories functions
+// support for P2 Categories functions file
+// @since 1.6
 require_once ( get_template_directory() . '/functions-p2-categories.php');
 
 require_once( get_template_directory() . '/inc/utils.php' );
@@ -14,7 +15,6 @@ p2_maybe_define( 'P2_JS_PATH',  get_template_directory()     . '/js'  );
 p2_maybe_define( 'P2_JS_URL',   get_template_directory_uri() . '/js'  );
 
 class P2 {
-	
 	/**
 	 * DB version.
 	 *
@@ -42,14 +42,14 @@ class P2 {
 	 * @var array
 	 */
 	var $components = array();
-	
-	
 
 	/**
 	 * Includes and instantiates the various P2 components.
 	 */
-	 // P2 Categories
-	 // fixed PHP 7 deprecation - was function P2()
+	 
+	 // P2 Categories: PHP 7 deprecation fix
+	 // was: function P2()
+	 // @since 1.6
 	function __construct() {
 		// Fetch options
 		$this->options = get_option( $this->option_name );
