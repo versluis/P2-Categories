@@ -1016,20 +1016,21 @@ window.p2 = window.p2 || {};
 				thisFormElements.removeClass( 'disabled' );
 				return false;
 			}
-
+            
 			var tags = $('#tags').val();
 			if (tags == p2txt.tagit)
 				tags = '';
 			var post_format = $('#post_format').val();
 			var post_title = $('#posttitle').val();
 			var post_citation = $('#postcitation').val();
-
-			// var args = {action: 'new_post', _ajax_post:nonce, posttext: posttext, tags: tags, post_format: post_format, post_title: post_title, post_citation: post_citation, post_subscribe: post_subscribe };
-			
-			// P2 Categories Tweak
+            
+			// P2 Categories:
+			// adding category to post value
+			// @since 1.0
+			// was: var args = {action: 'new_post', _ajax_post:nonce, posttext: posttext, tags: tags, post_format: post_format, post_title: post_title, post_citation: post_citation, post_subscribe: post_subscribe };
 			var drop_cat = $('#drop_cat').val();
             var args = {action: 'new_post', _ajax_post:nonce, posttext: posttext, tags: tags, post_format: post_format, drop_cat: drop_cat, post_title: post_title, post_citation: post_citation, post_subscribe: post_subscribe };
-			// P2 Categories End
+            // end of category tweak
 			
 			var errorMessage = '';
 			$.ajax({
