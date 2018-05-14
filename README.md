@@ -26,7 +26,9 @@ The menu only shows existing categories, even empty ones. You cannot create new 
 Known Issues
 ============
 
-The category drop-down menu no longer works in Safari 10 on a Mac. Still works fine in Firefox and Microsoft Edge, and Safari 9. Thanks, Apple!
+Although the theme now works in PHP 7 without warnings, it appears there's a rather scary memory leak in the code somwehere. As a result, the memory the web server uses under PHP 7 eventually runs out, crashing your server.
+
+It is therefore NOT recommended to run P2 Categories (or P2 for that matter) in PHP 7.x. Please use PHP 5.6 instead.
 
 
 Further Reading
