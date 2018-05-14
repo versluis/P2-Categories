@@ -185,31 +185,6 @@ class P2Ajax extends P2Ajax_Read {
 	 */
 	static function new_post() {
 		global $user_ID;
-		
-		// P2 Categories
-		// this will give us the category slug
-		$drop_cat = $_POST['drop_cat'];
-		
-		// if nothing was selected, use the default category
-		if ($drop_cat == '') {
-			
-			$drop_cat = get_option('default_category');
-			// in this case we already have the category ID
-			$tag = array( $drop_cat );
-			$taxonomy = 'category';
-			wp_set_post_terms( $post_id, $tag, $taxonomy );
-		
-		} else {
-			// otherwise, let's convert the slug into an ID
-			$post_cat_object = get_category_by_slug( $drop_cat );
-			$post_cat_ID = $post_cat_object -> term_id;
-			
-			// now we define the category ID
-			$tag = array( $post_cat_ID );
-			$taxonomy = 'category';
-			wp_set_post_terms( $post_id, $tag, $taxonomy );
-		}
-		// P2 Categories End
 
 		if ( empty( $_POST['action'] ) || $_POST['action'] != 'new_post' ) {
 		    die( '-1' );
@@ -259,7 +234,34 @@ class P2Ajax extends P2Ajax_Read {
 			'tags_input'    => $tags,
 			'post_status'   => 'publish'
 		) );
-
+        
+		// P2 Categories
+		// if no category is selected, pick the default category
+		// this will give us the category slug
+		// @since 1.0
+		$drop_cat = $_POST['drop_cat'];
+		
+		// if nothing was selected, use the default category
+		if ($drop_cat == '') {
+			
+			$drop_cat = get_option('default_category');
+			// in this case we already have the category ID
+			$tag = array( $drop_cat );
+			$taxonomy = 'category';
+			wp_set_post_terms( $post_id, $tag, $taxonomy );
+		
+		} else {
+			// otherwise, let's convert the slug into an ID
+			$post_cat_object = get_category_by_slug( $drop_cat );
+			$post_cat_ID = $post_cat_object -> term_id;
+			
+			// now we define the category ID
+			$tag = array( $post_cat_ID );
+			$taxonomy = 'category';
+			wp_set_post_terms( $post_id, $tag, $taxonomy );
+		}
+		// end of category tweak
+		
 		if ( empty( $post_id ) )
 			echo '0';
 

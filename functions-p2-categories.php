@@ -3,7 +3,8 @@
 /* P2 Categories functions
 /* @since 1.6
  */
- 
+
+// build string for category meta
 function get_cats_with_count( $post, $format = 'list', $before = '', $sep = '', $after = '' ) {
   $postcats = get_the_category($post->ID, 'category' );
 
@@ -26,6 +27,7 @@ function get_cats_with_count( $post, $format = 'list', $before = '', $sep = '', 
   return apply_filters( 'cats_with_count', $before . join( $sep, $cat_links ) . $after, $post );
 }
 
+// insert category meta into post
 function cats_with_count( $format = 'list', $before = '', $sep = '', $after = '' ) {
   global $post;
   echo get_cats_with_count( $post, $format, $before, $sep, $after );

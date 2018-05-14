@@ -59,7 +59,7 @@
 				</span>
 			<?php endif; ?>
             
-            <!--//////////////////////////-->
+             <!--//////////////////////////-->
             <!-- list categories of this post -->
             <!--//////////////////////////-->
             <?php
@@ -73,6 +73,7 @@
                     <?php 
 					/*
 					// moved this section to separate functions file
+					// since @1.6
                     $separator = ', ';
                     $parents = '';
                     $post_id = get_the_ID();

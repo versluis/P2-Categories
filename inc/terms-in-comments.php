@@ -9,8 +9,12 @@
 class P2_Terms_In_Comments {
 	var $taxonomy;
 	var $meta_key;
-
-	function P2_Terms_In_Comments( $taxonomy, $meta_key = false ) {
+    
+	 // P2 Categories: PHP 7 deprecation fix
+	 // was: function P2_Terms_In_Comments
+	 // @since 1.6 
+	// function P2_Terms_In_Comments(){}
+	function __construct( $taxonomy, $meta_key = false ) {
 		$this->taxonomy = $taxonomy;
 		$this->meta_key = empty( $meta_key ) ? "_{$taxonomy}_term_meta" : $meta_key;
 

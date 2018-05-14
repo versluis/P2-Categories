@@ -197,7 +197,7 @@ class P2_JS {
 
 	static function print_options() {
 		$mentions = p2_get( 'mentions' );
-	
+
 		// P2 Categories: fixed use of deprecated function
 		// get_currentuserinfo();
 		// @since 1.6
