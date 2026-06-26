@@ -1,5 +1,17 @@
 # P2 Categories — Changelog
 
+## v1.8 — June 2026
+
+Deprecated WordPress API replacements:
+
+- Replaced `query_posts()` with `WP_Query` and added `wp_reset_postdata()` in `get_latest_posts()` (`inc/ajax-read.php`)
+- Replaced `get_category_by_slug()` (deprecated WP 5.9) with `get_term_by('slug', ...)` (`inc/ajax.php`)
+- Replaced manual `<title>` tag and `wp_title` filter (deprecated WP 4.4) with `add_theme_support('title-tag')`; removed `p2_wp_title()` function (`functions.php`, `header.php`)
+- Replaced `global $user_ID` (deprecated WP 3.5) with `get_current_user_id()` across `functions.php`, `inc/ajax.php`, `inc/ajax-read.php`, and `inc/template-tags.php`
+- Replaced nested `get_tag_name()` function declaration with `wp_list_pluck()` (`inc/ajax.php`)
+
+---
+
 ## v1.7 — June 2026
 
 Security fixes:
