@@ -1,5 +1,17 @@
 # P2 Categories — Changelog
 
+## v1.9 — June 2026
+
+PHP modernisation:
+
+- Replaced PHP4-style `var` with `public` on all `P2` class properties (`functions.php`)
+- Replaced `array( &$this, ... )` with `array( $this, ... )` — PHP4 by-reference passing is invalid in PHP 8 (`functions.php`)
+- Replaced `add_filter()` with `add_action()` for the `after_setup_theme` hook (`functions.php`)
+- Replaced `@str_split()` calls with explicit `strpos()` false-checks and `substr()`; removes error-suppression operator and fixes the underlying assumption that `strpos()` always finds a match (`functions.php`)
+- Initialised `$tag_links` and `$cat_links` before their `foreach` loops to prevent undefined variable notices (`functions.php`, `functions-p2-categories.php`)
+
+---
+
 ## v1.8 — June 2026
 
 Deprecated WordPress API replacements:
