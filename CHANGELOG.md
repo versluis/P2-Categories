@@ -1,5 +1,16 @@
 # P2 Categories — Changelog
 
+## v2.0 — June 2026
+
+HTML5 standards:
+
+- Replaced XHTML 1.1 DOCTYPE and `xmlns` attribute with `<!DOCTYPE html>` (`header.php`)
+- Removed obsolete `profile` attribute from `<head>` (`header.php`)
+- Replaced `<meta http-equiv="Content-Type">` with `<meta charset="...">` (`header.php`)
+- Replaced direct `$post->ID` access with `get_the_ID()` in post format switch for PHP 8 safety (`entry.php`)
+
+---
+
 ## v1.9 — June 2026
 
 PHP modernisation:
