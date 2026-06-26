@@ -1,5 +1,23 @@
 # P2 Categories — Changelog
 
+## v2.1 — June 2026
+
+Dark mode:
+
+- Added `@media (prefers-color-scheme: dark)` block to `style.css` covering all colour declarations: backgrounds, text, links, borders, inputs, buttons, blockquotes, autocomplete dropdowns, tooltips, navigation menus, post-format UI, tables, widgets, and sticky posts
+- Accent colour lightened from `#3478e3` to `#5a9af0` for legibility on dark backgrounds; hover colour adjusted to `#f08050`
+- Sidebar column tint switched from a background image (`sidebar_back.gif`) to a plain CSS background colour — no new image asset required
+
+Drop local jQuery UI Autocomplete:
+
+- Removed `js/jquery.ui.autocomplete.js` — WordPress already bundles `jquery-ui-autocomplete` and the three P2 extension scripts already declare it as a dependency by its WordPress handle name, so the local copy was loaded twice
+- Removed dead `p2-user-bundle` script registration from `inc/js.php` — was registered but never enqueued
+- Deleted `js/p2.user.bundle.js` (pre-built bundle file, now unused)
+- Removed `jquery.ui.autocomplete.js` from `bin/bundle-user-js` file list
+- Retained `js/jquery.ui.autocomplete.css` for autocomplete dropdown appearance styling
+
+---
+
 ## v2.0 — June 2026
 
 JavaScript modernisation (`/js`):
