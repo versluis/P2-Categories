@@ -14,9 +14,9 @@
  * @since unknown
  */
 class P2_Mentions extends P2_Terms_In_Comments {
-	var $names          = array();
-	var $users          = array();
-	var $mentions_regex = '/\B@([\w-\.]+)\b/';
+	public $names          = array();
+	public $users          = array();
+	public $mentions_regex = '/\B@([\w.\-]+)\b/';
     
 	 // P2 Categories: PHP 7 deprecation fix
 	 // was: function P2_Mentions
@@ -26,10 +26,10 @@ class P2_Mentions extends P2_Terms_In_Comments {
 		p2_maybe_define( 'P2_MENTIONS_SLUG',     'mentions', 'p2_mentions_slug'     );
 
 		// Hooks
-		add_action( 'init',              array( &$this, 'init'            ), 0 );
-		add_filter( 'the_content',       array( &$this, 'mention_links'   ), 5 );
-		add_filter( 'comment_text',      array( &$this, 'mention_links'   ), 5 );
-		add_filter( 'p2_found_mentions', array( &$this, 'filter_mentions' ), 5 );
+		add_action( 'init',              array( $this, 'init'            ), 0 );
+		add_filter( 'the_content',       array( $this, 'mention_links'   ), 5 );
+		add_filter( 'comment_text',      array( $this, 'mention_links'   ), 5 );
+		add_filter( 'p2_found_mentions', array( $this, 'filter_mentions' ), 5 );
         
 		// P2 Categories: PHP 7 deprecation fix
 		// was parent::P2_Terms_In_Comments( P2_MENTIONS_TAXONOMY );
