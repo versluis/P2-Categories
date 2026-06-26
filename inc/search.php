@@ -12,15 +12,15 @@ class P2_Search {
 	// was P2_Search()
 	function __construct() {
 		// Bind search query filters
-		add_filter( 'posts_distinct',   array( &$this, 'search_comments_distinct' ) );
-		add_filter( 'posts_where',      array( &$this, 'search_comments_where'    ) );
-		add_filter( 'posts_join',       array( &$this, 'search_comments_join'     ) );
+		add_filter( 'posts_distinct',   array( $this, 'search_comments_distinct' ) );
+		add_filter( 'posts_where',      array( $this, 'search_comments_where'    ) );
+		add_filter( 'posts_join',       array( $this, 'search_comments_join'     ) );
 
 		// Bind text highlighting filters
-		add_filter( 'the_content',      array( &$this, 'highlight_terms_in_text'  ), 12 ); // Run later to avoid shortcode conflicts
-		add_filter( 'the_excerpt',      array( &$this, 'highlight_terms_in_text'  ), 12 ); // Run later to avoid shortcode conflicts
-		add_filter( 'comment_text',     array( &$this, 'highlight_terms_in_text'  ), 12 ); // Run later to avoid shortcode conflicts
-		add_filter( 'get_the_tags',     array( &$this, 'highlight_terms_in_tags'  ) );
+		add_filter( 'the_content',      array( $this, 'highlight_terms_in_text'  ), 12 ); // Run later to avoid shortcode conflicts
+		add_filter( 'the_excerpt',      array( $this, 'highlight_terms_in_text'  ), 12 ); // Run later to avoid shortcode conflicts
+		add_filter( 'comment_text',     array( $this, 'highlight_terms_in_text'  ), 12 ); // Run later to avoid shortcode conflicts
+		add_filter( 'get_the_tags',     array( $this, 'highlight_terms_in_tags'  ) );
 	}
 
 	function search_comments_distinct( $distinct ) {

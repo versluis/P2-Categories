@@ -9,8 +9,8 @@ class P2_Recent_Comments extends WP_Widget {
 	function __construct() {
 		parent::__construct( false, __( 'P2 Recent Comments', 'p2' ), array( 'description' => __( 'Recent comments with avatars.', 'p2' ) ) );
 
-		add_action( 'comment_post', array(&$this, 'flush_widget_cache' ) );
-		add_action( 'transition_comment_status', array( &$this, 'flush_widget_cache' ) );
+		add_action( 'comment_post', array( $this, 'flush_widget_cache' ) );
+		add_action( 'transition_comment_status', array( $this, 'flush_widget_cache' ) );
 
 		$this->default_num_to_show = 5;
 		$this->default_avatar_size = 32;
@@ -67,7 +67,10 @@ class P2_Recent_Comments extends WP_Widget {
 	}
 
 	function widget( $args, $instance ) {
-		extract( $args );
+		$before_widget = $args['before_widget'];
+		$after_widget  = $args['after_widget'];
+		$before_title  = $args['before_title'];
+		$after_title   = $args['after_title'];
 
 		$title = (isset( $instance['title'] ) && $instance['title'])? $instance['title'] : __( 'Recent comments', 'p2' );
 		$num_to_show = (isset( $instance['num_to_show'] ) && (int)$instance['num_to_show'])? (int)$instance['num_to_show'] : $this->default_num_to_show;

@@ -225,7 +225,7 @@ class P2_JS {
 			var ajaxReadUrl             = "<?php echo esc_js( esc_url_raw( P2_JS::ajax_read_url() ) ); ?>";
 			var updateRate              = "30000"; // 30 seconds
 			var nonce                   = "<?php echo esc_js( $page_options['nonce'] ); ?>";
-			var login_url               = "<?php echo $page_options['login_url'] ?>";
+			var login_url               = "<?php echo esc_js( $page_options['login_url'] ); ?>";
 			var templateDir             = "<?php echo esc_js( get_template_directory_uri() ); ?>";
 			var isFirstFrontPage        = <?php echo $page_options['is_first_front_page'] ?>;
 			var isFrontPage             = <?php echo $page_options['is_front_page'] ?>;
@@ -240,7 +240,7 @@ class P2_JS {
 			var inlineEditPosts         = <?php echo $page_options['prologue_inlineedit'] ?>;
 			var inlineEditComments      = <?php echo $page_options['prologue_comments_inlineedit'] ?>;
 			var wpUrl                   = "<?php echo esc_js( site_url() ); ?>";
-			var rssUrl                  = "<?php esc_js( get_bloginfo( 'rss_url' ) ); ?>";
+			var rssUrl                  = "<?php echo esc_js( get_bloginfo( 'rss_url' ) ); ?>";
 			var pageLoadTime            = "<?php echo gmdate( 'Y-m-d H:i:s' ); ?>";
 			var commentsOnPost          = new Array;
 			var postsOnPage             = new Array;

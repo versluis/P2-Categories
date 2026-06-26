@@ -57,7 +57,7 @@ class P2 {
 			$this->options = array();
 
 		// Include the P2 components
-		$includes = array( 'compat', 'terms-in-comments', 'js-locale',
+		$includes = array( 'terms-in-comments', 'js-locale',
 			'mentions', 'search', 'js', 'options-page', 'widgets/recent-tags', 'widgets/recent-comments',
 			'list-creator' );
 

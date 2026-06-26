@@ -7,8 +7,8 @@
  */
 
 class P2_Terms_In_Comments {
-	var $taxonomy;
-	var $meta_key;
+	public $taxonomy;
+	public $meta_key;
     
 	 // P2 Categories: PHP 7 deprecation fix
 	 // was: function P2_Terms_In_Comments
@@ -18,9 +18,9 @@ class P2_Terms_In_Comments {
 		$this->taxonomy = $taxonomy;
 		$this->meta_key = empty( $meta_key ) ? "_{$taxonomy}_term_meta" : $meta_key;
 
-		add_action( 'wp_insert_comment',    array( &$this, 'update_comment' ) );
-		add_action( 'edit_comment',         array( &$this, 'update_comment' ) );
-		add_action( 'wp_insert_post',       array( &$this, 'update_post'    ), 10, 2 );
+		add_action( 'wp_insert_comment',    array( $this, 'update_comment' ) );
+		add_action( 'edit_comment',         array( $this, 'update_comment' ) );
+		add_action( 'wp_insert_post',       array( $this, 'update_post'    ), 10, 2 );
 	}
 
 	function update_comment( $comment_id ) {
@@ -109,7 +109,6 @@ class P2_Terms_In_Comments {
 		$where      = $wpdb->prepare( "a.meta_key = %s", $this->meta_key );
 		$limit      = '';
 		$orderby    = $args['orderby'];
-		$order      = '';
 
 		if ( ! empty( $orderby ) ) {
 			$orderby  = "ORDER BY $orderby ";
@@ -129,7 +128,7 @@ class P2_Terms_In_Comments {
 		elseif ( ! empty( $args['number'] ) )
 			$limit = "LIMIT $number";
 
-		$results = $wpdb->get_results( "SELECT meta_value FROM $wpdb->commentmeta $join WHERE $where $orderby $order $limit", ARRAY_A );
+		$results = $wpdb->get_results( "SELECT meta_value FROM $wpdb->commentmeta $join WHERE $where $orderby $limit", ARRAY_A );
 
 		$meta = array();
 		if ( ! empty( $results ) ) {

@@ -35,7 +35,7 @@
  * @package P2
  */
 class P2_Post_List_Creator extends P2_List_Creator {
-	var $form_action_name = 'p2-post-task-list';
+	public $form_action_name = 'p2-post-task-list';
     
 	// P2 Categories: PHP 7 deprecation fix
 	// was P2_Post_List_Creator()
@@ -182,7 +182,7 @@ class P2_Post_List_Creator extends P2_List_Creator {
  * @package P2
  */
 class P2_Comment_List_Creator extends P2_List_Creator {
-	var $form_action_name = 'p2-comment-task-list';
+	public $form_action_name = 'p2-comment-task-list';
 
     // P2 Categories: PHP 7 deprecation fix
 	// was P2_Comment_List_Creator()
@@ -354,13 +354,13 @@ class P2_List_Creator {
 	/**
 	 * @var string name for action parameter of HTML form (not the action attribute, which is always the admin-ajax.php URL)
 	 */
-	var $form_action_name = '';
+	public $form_action_name = '';
 	/**
 	 * @var bool Are we currently in a nested list?
 	 */
-	var $doing_recursion = false;
+	public $doing_recursion = false;
 
-	var $preserved_texts = array();
+	public $preserved_texts = array();
 
     // P2 Categories: PHP 7 deprecation fix
 	// was P2_List_Creator()

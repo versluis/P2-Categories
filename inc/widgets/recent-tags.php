@@ -41,7 +41,10 @@ class P2_Recent_Tags extends WP_Widget {
 	}
 
 	function widget( $args, $instance ) {
-		extract( $args );
+		$before_widget = $args['before_widget'];
+		$after_widget  = $args['after_widget'];
+		$before_title  = $args['before_title'];
+		$after_title   = $args['after_title'];
 
 		$title = (isset( $instance['title'] ) && $instance['title'])? $instance['title'] : __( 'Recent tags', 'p2' );
 		$num_to_show = (isset( $instance['num_to_show'] ) && (int)$instance['num_to_show'])? (int)$instance['num_to_show'] : $this->default_num_to_show;
@@ -84,7 +87,7 @@ class P2_Recent_Tags extends WP_Widget {
 			$post_ids_and_tags[] = array( 'post_id' => $recent_post_id, 'tag' => $tag );
 		}
 
-		usort( $post_ids_and_tags, create_function( '$a, $b', 'return $b["post_id"] - $a["post_id"];' ) );
+		usort( $post_ids_and_tags, function( $a, $b ) { return $b['post_id'] - $a['post_id']; } );
 
 		$post_ids_and_tags = array_slice( $post_ids_and_tags, 0, $num_to_show );
 
