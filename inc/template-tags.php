@@ -16,9 +16,9 @@ function p2_body_class( $classes ) {
 add_filter( 'body_class', 'p2_body_class' );
 
 function p2_user_can_post() {
-	global $user_ID;
+	$user_id = get_current_user_id();
 
-	if ( current_user_can( 'publish_posts' ) || ( get_option( 'p2_allow_users_publish' ) && $user_ID ) )
+	if ( current_user_can( 'publish_posts' ) || ( get_option( 'p2_allow_users_publish' ) && $user_id ) )
 		return true;
 
 	return false;

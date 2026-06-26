@@ -52,10 +52,7 @@ class P2Ajax extends P2Ajax_Read {
 		add_filter( 'user_can_richedit', '__return_true' );
 		$post = get_post( $post_id, OBJECT, 'edit' );
 
-		function get_tag_name( $tag ) {
-			return $tag->name;
-		}
-		$tags = array_map( 'get_tag_name', wp_get_post_tags( $post_id ) );
+		$tags = wp_list_pluck( wp_get_post_tags( $post_id ), 'name' );
 
 		$post_format = p2_get_post_format( $post_id );
 
@@ -184,7 +181,7 @@ class P2Ajax extends P2Ajax_Read {
 	 * Create a post.
 	 */
 	static function new_post() {
-		global $user_ID;
+		$user_id = get_current_user_id();
 
 		if ( empty( $_POST['action'] ) || $_POST['action'] != 'new_post' ) {
 		    die( '-1' );
@@ -193,7 +190,7 @@ class P2Ajax extends P2Ajax_Read {
 			die( '<p>'.__( 'Error: not logged in.', 'p2' ).'</p>' );
 		}
 		if ( ! ( current_user_can( 'publish_posts' ) ||
-		        (get_option( 'p2_allow_users_publish' ) && $user_ID )) ) {
+		        (get_option( 'p2_allow_users_publish' ) && $user_id )) ) {
 
 			die( '<p>'.__( 'Error: not allowed to post.', 'p2' ).'</p>' );
 		}
@@ -252,8 +249,8 @@ class P2Ajax extends P2Ajax_Read {
 		
 		} else {
 			// otherwise, let's convert the slug into an ID
-			$post_cat_object = get_category_by_slug( $drop_cat );
-			$post_cat_ID = $post_cat_object -> term_id;
+			$post_cat_object = get_term_by( 'slug', $drop_cat, 'category' );
+			$post_cat_ID = $post_cat_object->term_id;
 			
 			// now we define the category ID
 			$tag = array( $post_cat_ID );

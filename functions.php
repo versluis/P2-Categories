@@ -204,6 +204,7 @@ function p2_setup() {
 	p2_setup_custom_header();
 
 	add_theme_support( 'automatic-feed-links' );
+	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-formats', p2_get_supported_post_formats( 'post-format' ) );
 
 	add_theme_support( 'custom-background', apply_filters( 'p2_custom_background_args', array( 'default-color' => 'f1f1f1' ) ) );
@@ -575,7 +576,7 @@ add_action( 'wp_enqueue_scripts', 'p2_print_style' );
 	Modified to replace query string with blog url in output string
 */
 function prologue_get_comment_reply_link( $args = array(), $comment = null, $post = null ) {
-	global $user_ID;
+	$user_id = get_current_user_id();
 
 	if ( post_password_required() )
 		return;
@@ -604,7 +605,7 @@ function prologue_get_comment_reply_link( $args = array(), $comment = null, $pos
 
 	$reply_text = esc_html( $reply_text );
 
-	if ( get_option( 'comment_registration' ) && !$user_ID )
+	if ( get_option( 'comment_registration' ) && ! $user_id )
 		$link = '<a rel="nofollow" href="' . site_url( 'wp-login.php?redirect_to=' . urlencode( get_permalink() ) ) . '">' . esc_html( $login_text ) . '</a>';
 	else
 		$link = "<a rel='nofollow' class='comment-reply-link' href='". get_permalink($post). "#" . urlencode( $respond_id ) . "' title='". __( 'Reply', 'p2' )."' onclick='return addComment.moveForm(\"" . esc_js( "$add_below-$comment->comment_ID" ) . "\", \"" . esc_js( $comment->comment_ID ) . "\", \"" . esc_js( $respond_id ) . "\", \"" . esc_js( $post->ID ) . "\")'>$reply_text</a>";
@@ -707,29 +708,3 @@ function p2_is_iphone() {
 	return $output;
 }
 
-/**
- * Filters wp_title to print a neat <title> tag based on what is being viewed.
- *
- * @since P2 1.5
- */
-function p2_wp_title( $title, $sep ) {
-	global $page, $paged;
-
-	if ( is_feed() )
-		return $title;
-
-	// Add the blog name
-	$title .= get_bloginfo( 'name' );
-
-	// Add the blog description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		$title .= " $sep $site_description";
-
-	// Add a page number if necessary:
-	if ( $paged >= 2 || $page >= 2 )
-		$title .= " $sep " . sprintf( __( 'Page %s', 'p2' ), max( $paged, $page ) );
-
-	return $title;
-}
-add_filter( 'wp_title', 'p2_wp_title', 10, 2 );

@@ -63,9 +63,9 @@ class P2Ajax_Read {
 		$number_of_new_posts = 0;
 		$visible_posts = isset( $_GET['vp'] ) ? (array)$_GET['vp'] : array();
 
-		query_posts( 'showposts=' . $num_posts . '&post_status=publish' );
+		$query = new WP_Query( array( 'posts_per_page' => $num_posts, 'post_status' => 'publish' ) );
 		ob_start();
-		while ( have_posts() ) : the_post();
+		while ( $query->have_posts() ) : $query->the_post();
 			$current_user_id = get_the_author_meta( 'ID' );
 
 			// Avoid showing the same post if it's already on the page
@@ -81,6 +81,7 @@ class P2Ajax_Read {
 
 			p2_load_entry( false );
 		endwhile;
+		wp_reset_postdata();
 		$posts_html = ob_get_clean();
 
 		if ( $number_of_new_posts != 0 ) {
@@ -98,7 +99,8 @@ class P2Ajax_Read {
 	}
 
 	static function get_latest_comments() {
-		global $wpdb, $comments, $comment, $max_depth, $depth, $user_login, $user_ID, $user_identity;
+		global $wpdb, $comments, $comment, $max_depth, $depth, $user_login, $user_identity;
+		$user_ID = get_current_user_id();
 
 		$number = 10; //max amount of comments to load
 		$load_time = $_GET['load_time'];
