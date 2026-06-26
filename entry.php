@@ -110,7 +110,7 @@
 	 * Check the post format and display content accordingly.
 	 * The value should be a valid post format or one of the back compat categories.
 	 */
-	switch ( p2_get_post_format( $post->ID ) ) {
+	switch ( p2_get_post_format( get_the_ID() ) ) {
 		case 'status':
 		case 'link':
 			the_content( __( '(More ...)' , 'p2' ) );
