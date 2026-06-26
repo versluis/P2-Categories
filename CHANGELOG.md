@@ -2,6 +2,16 @@
 
 ## v2.0 — June 2026
 
+JavaScript modernisation (`/js`):
+
+- Fixed `spinSmall` ordering bug in `p2.js`: the spin config object was declared after `commentEditSpinnerText` used it; due to `var` hoisting `spinSmall` was `undefined` when `.spin()` ran — moved declaration above its first use
+- Removed duplicate `var commentEditSpinnerText` declaration; collapsed into a single statement (`js/p2.js`)
+- Replaced `.bind()` with `.on()` in three places — `.bind()` was deprecated in jQuery 3.0 (`js/p2.js`)
+- Replaced `.mousemove()` shorthand with `.on('mousemove', ...)` — deprecated in jQuery 3.0 (`js/p2.js`)
+- Replaced `.attr('checked')` with `.prop('checked')` for three checkbox reads — `.attr()` returns the HTML attribute string, not the live boolean state (`js/p2.js`)
+- Added `var` to `shortMonths`, `longMonths`, `shortDays`, `longDays` — were leaking as implicit globals (`js/wp-locale.js`)
+- Added `var` to `contents` — was leaking as an implicit global (`js/caret.js`)
+
 HTML5 standards:
 
 - Replaced XHTML 1.1 DOCTYPE and `xmlns` attribute with `<!DOCTYPE html>` (`header.php`)
