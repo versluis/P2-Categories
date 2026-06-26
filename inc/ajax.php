@@ -113,7 +113,7 @@ class P2Ajax extends P2Ajax_Read {
 
 		// Add the quote citation to the content if it exists
 		if ( ! empty( $_POST['citation'] ) && 'quote' == $post_format ) {
-			$new_post_content = '<p>' . $new_post_content . '</p><cite>' . $_POST['citation'] . '</cite>';
+			$new_post_content = '<p>' . $new_post_content . '</p><cite>' . wp_kses_post( $_POST['citation'] ) . '</cite>';
 		}
 
 		$new_tags = $_POST['tags'];
@@ -224,7 +224,7 @@ class P2Ajax extends P2Ajax_Read {
 
 		// Add the quote citation to the content if it exists
 		if ( ! empty( $_POST['post_citation'] ) && 'quote' == $post_format )
-			$post_content = '<p>' . $post_content . '</p><cite>' . $_POST['post_citation'] . '</cite>';
+			$post_content = '<p>' . $post_content . '</p><cite>' . wp_kses_post( $_POST['post_citation'] ) . '</cite>';
 
 		$post_id = wp_insert_post( array(
 			'post_author'   => $user_id,
@@ -239,7 +239,7 @@ class P2Ajax extends P2Ajax_Read {
 		// if no category is selected, pick the default category
 		// this will give us the category slug
 		// @since 1.0
-		$drop_cat = $_POST['drop_cat'];
+		$drop_cat = isset( $_POST['drop_cat'] ) ? sanitize_key( $_POST['drop_cat'] ) : '';
 		
 		// if nothing was selected, use the default category
 		if ($drop_cat == '') {

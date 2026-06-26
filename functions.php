@@ -587,7 +587,12 @@ function prologue_get_comment_reply_link( $args = array(), $comment = null, $pos
 	if ( 0 == $args['depth'] || $args['max_depth'] <= $args['depth'] )
 		return;
 
-	extract($args, EXTR_SKIP);
+	$add_below  = $args['add_below'];
+	$respond_id = $args['respond_id'];
+	$reply_text = $args['reply_text'];
+	$login_text = $args['login_text'];
+	$before     = $args['before'];
+	$after      = $args['after'];
 
 	$comment = get_comment($comment);
 	$post = get_post($post);
@@ -602,7 +607,7 @@ function prologue_get_comment_reply_link( $args = array(), $comment = null, $pos
 	if ( get_option( 'comment_registration' ) && !$user_ID )
 		$link = '<a rel="nofollow" href="' . site_url( 'wp-login.php?redirect_to=' . urlencode( get_permalink() ) ) . '">' . esc_html( $login_text ) . '</a>';
 	else
-		$link = "<a rel='nofollow' class='comment-reply-link' href='". get_permalink($post). "#" . urlencode( $respond_id ) . "' title='". __( 'Reply', 'p2' )."' onclick='return addComment.moveForm(\"" . esc_js( "$add_below-$comment->comment_ID" ) . "\", \"$comment->comment_ID\", \"" . esc_js( $respond_id ) . "\", \"$post->ID\")'>$reply_text</a>";
+		$link = "<a rel='nofollow' class='comment-reply-link' href='". get_permalink($post). "#" . urlencode( $respond_id ) . "' title='". __( 'Reply', 'p2' )."' onclick='return addComment.moveForm(\"" . esc_js( "$add_below-$comment->comment_ID" ) . "\", \"" . esc_js( $comment->comment_ID ) . "\", \"" . esc_js( $respond_id ) . "\", \"" . esc_js( $post->ID ) . "\")'>$reply_text</a>";
 	return apply_filters( 'comment_reply_link', $before . $link . $after, $args, $comment, $post);
 }
 
