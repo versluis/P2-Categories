@@ -16,7 +16,7 @@
 	function syncButton() {
 		var btn = document.getElementById( 'p2-color-scheme-toggle' );
 		if ( ! btn ) { return; }
-		btn.textContent = isDark() ? 'Light mode' : 'Dark mode';
+		btn.textContent = isDark() ? '☀ Light mode' : '☾ Dark mode';
 		btn.setAttribute( 'aria-pressed', isDark() ? 'true' : 'false' );
 	}
 

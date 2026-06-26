@@ -29,7 +29,7 @@
 		<?php if ( current_user_can( 'publish_posts' ) ) : ?>
 			<a href="" id="mobile-post-button" style="display: none;"><?php _e( 'Post', 'p2' ) ?></a>
 		<?php endif; ?>
-		<button id="p2-color-scheme-toggle" aria-pressed="false">Dark mode</button>
+		<button id="p2-color-scheme-toggle" aria-pressed="false">☾ Dark mode</button>
 	</div>
 
 	<?php if ( has_nav_menu( 'primary' ) ) : ?>
