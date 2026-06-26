@@ -20,28 +20,28 @@ class P2 {
 	 *
 	 * @var int
 	 */
-	var $db_version = 3;
+	public $db_version = 3;
 
 	/**
 	 * Options.
 	 *
 	 * @var array
 	 */
-	var $options = array();
+	public $options = array();
 
 	/**
 	 * Option name in DB.
 	 *
 	 * @var string
 	 */
-	var $option_name = 'p2_manager';
+	public $option_name = 'p2_manager';
 
 	/**
 	 * Components.
 	 *
 	 * @var array
 	 */
-	var $components = array();
+	public $components = array();
 
 	/**
 	 * Includes and instantiates the various P2 components.
@@ -79,8 +79,8 @@ class P2 {
 		$this->add( 'comment-list-creator', 'P2_Comment_List_Creator' );
 
 		// Bind actions
-		add_action( 'init',       array( &$this, 'init'             ) );
-		add_action( 'admin_init', array( &$this, 'maybe_upgrade_db' ), 5 );
+		add_action( 'init',       array( $this, 'init'             ) );
+		add_action( 'admin_init', array( $this, 'maybe_upgrade_db' ), 5 );
 	}
 
 	function init() {
@@ -218,7 +218,7 @@ function p2_setup() {
 	if ( is_admin() && false === get_option( 'prologue_show_titles' ) )
 		add_option( 'prologue_show_titles', 1 );
 }
-add_filter( 'after_setup_theme', 'p2_setup' );
+add_action( 'after_setup_theme', 'p2_setup' );
 
 function p2_register_sidebar() {
 	register_sidebar( array(
@@ -334,11 +334,12 @@ function p2_the_title( $before = '<h2>', $after = '</h2>', $echo = true ) {
 	$title = trim( $title );
 
 	// Clean up links in the title
-	if ( false !== strpos( $title, 'http' ) )  {
-		$split = @str_split( $content, strpos( $content, 'http' ) );
-		$content = $split[0];
-		$split2 = @str_split( $title, strpos( $title, 'http' ) );
-		$title = $split2[0];
+	if ( false !== strpos( $title, 'http' ) ) {
+		$content_http_pos = strpos( $content, 'http' );
+		if ( false !== $content_http_pos ) {
+			$content = substr( $content, 0, $content_http_pos );
+		}
+		$title = substr( $title, 0, strpos( $title, 'http' ) );
 	}
 
 	// Avoid processing an empty title
@@ -417,6 +418,7 @@ function get_tags_with_count( $post, $format = 'list', $before = '', $sep = '', 
 	if ( !$posttags )
 		return '';
 
+	$tag_links = array();
 	foreach ( $posttags as $tag ) {
 		if ( $tag->count > 1 && !is_tag($tag->slug) ) {
 			$tag_link = '<a href="' . get_tag_link( $tag ) . '" rel="tag">' . $tag->name . ' ( ' . number_format_i18n( $tag->count ) . ' )</a>';

@@ -11,6 +11,7 @@ function get_cats_with_count( $post, $format = 'list', $before = '', $sep = '', 
   if ( !$postcats )
 	  return '';
 
+  $cat_links = array();
   foreach ( $postcats as $cat ) {
 	  if ( $cat->count > 1 && !is_category($cat->slug) ) {
 		  $cat_link = '<a href="' . get_category_link( $cat ) . '" rel="category">' . $cat->name . ' ( ' . number_format_i18n( $cat->count ) . ' )</a>';
