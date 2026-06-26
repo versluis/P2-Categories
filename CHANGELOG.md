@@ -9,6 +9,16 @@ HTML5 standards:
 - Replaced `<meta http-equiv="Content-Type">` with `<meta charset="...">` (`header.php`)
 - Replaced direct `$post->ID` access with `get_the_ID()` in post format switch for PHP 8 safety (`entry.php`)
 
+Deep-dive modernisation of remaining `inc/` files:
+
+- Removed `inc/compat.php` — PHP 4/5 shims for `str_split()` and `str_ireplace()`, dead code since PHP 5.0; dropped from the includes array (`functions.php`)
+- Replaced `create_function()` with an anonymous function in `usort()` call — `create_function` was removed in PHP 8.0 (`inc/widgets/recent-tags.php`)
+- Replaced `extract($args)` with explicit variable assignments in both widget files to eliminate variable-injection risk (`inc/widgets/recent-tags.php`, `inc/widgets/recent-comments.php`)
+- Replaced all `array( &$this, ... )` by-reference callbacks with `array( $this, ... )` — PHP4 by-reference passing is invalid in PHP 8 (`inc/search.php`, `inc/terms-in-comments.php`, `inc/widgets/recent-comments.php`)
+- Changed `var` to `public` on all class properties in `P2_Post_List_Creator`, `P2_Comment_List_Creator`, `P2_List_Creator`, and `P2_Terms_In_Comments` (`inc/list-creator.php`, `inc/terms-in-comments.php`)
+- Removed dead `$order` variable and trailing empty string from SQL query in `get_comment_meta()` (`inc/terms-in-comments.php`)
+- Added missing `esc_js()` around `login_url` output; added missing `echo` on `rssUrl` JavaScript variable (was always emitting an empty string) (`inc/js.php`)
+
 ---
 
 ## v1.9 — June 2026
