@@ -4,9 +4,13 @@
 
 Dark mode:
 
-- Added `@media (prefers-color-scheme: dark)` block to `style.css` covering all colour declarations: backgrounds, text, links, borders, inputs, buttons, blockquotes, autocomplete dropdowns, tooltips, navigation menus, post-format UI, tables, widgets, and sticky posts
+- Added full dark colour palette to `style.css` via `html.dark-mode` selectors covering all colour declarations: backgrounds, text, links, borders, inputs, buttons, blockquotes, autocomplete dropdowns, tooltips, navigation menus, post-format UI, tables, widgets, and sticky posts
 - Accent colour lightened from `#3478e3` to `#5a9af0` for legibility on dark backgrounds; hover colour adjusted to `#f08050`
 - Sidebar column tint switched from a background image (`sidebar_back.gif`) to a plain CSS background colour — no new image asset required
+- Added user-facing **☾ Dark mode / ☀ Light mode** toggle button in the site header; preference is saved to `localStorage` and persists across sessions (`js/dark-mode.js`, `header.php`, `inc/js.php`)
+- A tiny inline script in `<head>` applies the `dark-mode` class to `<html>` before first paint, preventing any flash of the wrong colour scheme
+- OS-level preference changes are detected live via `matchMedia` and applied automatically when no manual preference is stored
+- ☾ and ☀ icons added to the toggle button labels for clarity across languages (Unicode symbols U+263E and U+2600, not emoji — render as text glyphs on all platforms)
 
 Drop local jQuery UI Autocomplete:
 
