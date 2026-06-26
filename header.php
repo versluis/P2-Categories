@@ -11,6 +11,7 @@
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+<script>(function(){var s=localStorage.getItem('p2-color-scheme');if(s==='dark'||(s===null&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark-mode');}})();</script>
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -28,6 +29,7 @@
 		<?php if ( current_user_can( 'publish_posts' ) ) : ?>
 			<a href="" id="mobile-post-button" style="display: none;"><?php _e( 'Post', 'p2' ) ?></a>
 		<?php endif; ?>
+		<button id="p2-color-scheme-toggle" aria-pressed="false">Dark mode</button>
 	</div>
 
 	<?php if ( has_nav_menu( 'primary' ) ) : ?>

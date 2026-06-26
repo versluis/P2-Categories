@@ -70,6 +70,14 @@ class P2_JS {
 			array( 'jquery' ),
 			'20120704'
 		);
+
+		wp_register_script(
+			'p2-dark-mode',
+			P2_JS_URL . '/dark-mode.js',
+			array(),
+			'20260626',
+			true
+		);
 	}
 
 	static function enqueue_styles() {
@@ -83,6 +91,8 @@ class P2_JS {
 
 	static function enqueue_scripts() {
 		global $wp_locale;
+
+		wp_enqueue_script( 'p2-dark-mode' );
 
 		// Generate dependencies for p2
 		$depends = array( 'jquery', 'utils', 'jquery-color', 'comment-reply',
