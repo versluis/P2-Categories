@@ -2,7 +2,7 @@
 Theme Name: P2 Categories (Revision 2)
 Theme URI: https://github.com/versluis/P2-Categories
 Description: A fork of P2 v1.5.8 with added support for categories
-Version: 2.0
+Version: 2.1
 Author: Jay Versluis and Automattic
 Author URI: https://wpguru.co.uk
 License: GNU General Public License v2 or later
@@ -1910,6 +1910,349 @@ div.possibly-related {
 }
 .printer-only {
 	display: none;
+}
+
+/* =Dark Mode
+--------------------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+
+	body {
+		background: #121212;
+	}
+	a, a:visited, h1 a:visited, a:active,
+	#main .selected .actions a, #main .selected .actions a:link,
+	#main .selected .actions a:visited, #help dt, #media-buttons .button {
+		color: #5a9af0;
+	}
+	a:hover, h1 a:hover, #main .selected .actions a:hover,
+	#main .selected .actions a:active, #media-buttons .button:hover {
+		color: #f08050;
+	}
+	a:hover {
+		border-bottom-color: #555;
+	}
+	acronym {
+		border-bottom-color: #666;
+	}
+	code {
+		background: #2a2a2a;
+		color: #c8c8c8;
+	}
+	blockquote {
+		color: #999;
+		background: #252525;
+	}
+	.category-quote blockquote p,
+	.format-quote blockquote p {
+		color: #999;
+		background: #2a2a2a;
+		text-shadow: none;
+	}
+	.category-link .postcontent p,
+	.format-link .postcontent p {
+		background: #162030;
+	}
+	h2 {
+		color: #c0c0c0;
+	}
+	h3 {
+		color: #999;
+	}
+	#postlist h4 {
+		border-bottom-color: #2a2a2a;
+	}
+	#main img.avatar {
+		border-color: #3a3a3a;
+	}
+	#main #postlist li {
+		border-top-color: #333;
+	}
+	#main #postlist .commentlist li {
+		border-top-color: #2d2d2d;
+	}
+	#main #postlist .commentlist li.bypostauthor {
+		border-top-color: #1e2d40;
+	}
+	#header .sleeve {
+		background: #1e1e1e;
+	}
+	#header h1 a,
+	#header small {
+		color: #5a9af0;
+	}
+	#footer {
+		background: #1e1e1e;
+		border-color: #2a2a2a;
+	}
+	#footer p {
+		color: #888;
+	}
+	#wrapper {
+		background: #1e1e1e;
+		border-color: #2a2a2a;
+	}
+	#postbox {
+		background: #1e1e1e;
+	}
+	#postbox .avatar img {
+		border-color: #3a3a3a;
+	}
+	#postbox textarea#posttext,
+	textarea.posttext {
+		background: #252525;
+		border-color: #3a3a3a;
+		color: #c8c8c8;
+	}
+	#wrapper form input[type="text"],
+	#wrapper form input[type="url"],
+	#wrapper form input[type="email"],
+	#wrapper form input[type="number"],
+	#wrapper form input[type="search"],
+	#wrapper form input[type="password"],
+	.inlineediting input[type="text"],
+	.inlineediting input[type="url"],
+	.inlineediting input[type="email"],
+	.inlineediting input[type="number"],
+	.inlineediting input[type="search"],
+	.inlineediting input[type="password"] {
+		border-color: #3a3a3a;
+		background: #252525;
+		color: #c8c8c8;
+	}
+	#sidebar form input[type="text"] {
+		background: #252525;
+	}
+	#postbox label {
+		color: #aaa;
+	}
+	#wrapper button,
+	#wrapper input[type="submit"] {
+		border-color: #444;
+		background: #2e2e2e;
+		color: #c8c8c8;
+	}
+	#wrapper button:active,
+	#wrapper input[type="submit"]:active {
+		background: #222;
+	}
+	.disabled, .disabled:hover {
+		color: #555;
+		background: #252525;
+		border-color: #3a3a3a;
+	}
+	#main .actions, #main .actions a, #main .actions a:link,
+	#main .actions a:visited, #main .actions a:hover, #main .actions a:active,
+	#main .keyselected .actions, #main .keyselected .actions a,
+	#main .keyselected .actions a:link, #main .keyselected .actions a:visited,
+	#main .keyselected .actions a:hover, #main .keyselected .actions a:active,
+	#main .selected ul li .actions, #main .selected ul li .actions a,
+	#main .selected ul li .actions a:link, #main .selected ul li .actions a:visited,
+	#main .selected ul li .actions a:hover, #main .selected ul li .actions a:active {
+		color: #555;
+	}
+	#media-buttons {
+		color: #666;
+	}
+	.postcontent {
+		color: #c0c0c0;
+	}
+	#main p img,
+	.wp-caption img {
+		border-color: #333;
+	}
+	#main p, #main ul, #main ol {
+		color: #c0c0c0;
+	}
+	#main #respond, .textedit {
+		background: #252525;
+	}
+	#respond textarea, .textedit textarea {
+		border-color: #3a3a3a;
+		background: #1e1e1e;
+		color: #c8c8c8;
+	}
+	#respond p label {
+		color: #888;
+	}
+	#main span.meta {
+		color: #888;
+	}
+	.sleeve_main {
+		background: #1e1e1e;
+	}
+	#main {
+		background: #1e1e1e;
+	}
+	#sidebar {
+		color: #c0c0c0;
+	}
+	#sidebar ul {
+		color: #888;
+	}
+	.wp-caption {
+		background-color: #252525;
+		border-color: #333;
+	}
+	.liveupdates {
+		color: #c0c0c0;
+		background: #162030;
+	}
+	.ac_results {
+		border-color: #3a3a3a;
+		background: rgba(30, 30, 30, 0.97);
+	}
+	.ac_over {
+		color: #fff;
+		background: #5a9af0;
+	}
+	#tooltip {
+		background: #2a2a2a;
+		color: #c8c8c8;
+		border-color: #3a3a3a;
+	}
+	#newCommentsIndicator {
+		border-color: #900;
+	}
+	li.newupdates,
+	li.newcomment {
+		background-color: #2d2d1a;
+	}
+	.keyselected {
+		background-color: #252525 !important;
+	}
+	.hilite {
+		color: #fff;
+		background: #b05800;
+	}
+	.mention-highlight {
+		background-color: #4a4400;
+	}
+	a.mention-current-user {
+		background: #252525;
+		border-color: #3a3a3a;
+		color: #5a9af0;
+		text-shadow: none;
+	}
+	a.mention-current-user:hover {
+		background: #5a9af0;
+		border-color: #5a9af0;
+		color: #fff;
+		text-shadow: none;
+	}
+	.navigation {
+		border-top-color: #333;
+	}
+	.discussion p {
+		color: #888 !important;
+	}
+	.discussion p a {
+		color: #888;
+		border-bottom-color: #333;
+	}
+	#post-types li a {
+		border-color: #3a3a3a;
+		background: #252525;
+		color: #c0c0c0;
+	}
+	#post-types li a:active {
+		background-color: #1e1e1e;
+	}
+	#post-types li a.selected {
+		background-color: #2a2a2a !important;
+		color: #888;
+	}
+	#wrapper {
+		background: #252525;
+		border: 1px solid #2a2a2a;
+	}
+	.sleeve_main {
+		background: #1e1e1e;
+	}
+	#main {
+		background: #1e1e1e;
+	}
+	.postcontent table,
+	.commentcontent table {
+		border-color: #3a3a3a;
+	}
+	.postcontent table td,
+	.commentcontent table td {
+		border-color: #3a3a3a;
+	}
+	.postcontent table th,
+	.commentcontent table th {
+		background-color: #252525;
+		color: #c0c0c0;
+		border-color: #3a3a3a;
+	}
+	.wp-caption p.wp-caption-text {
+		color: #888;
+	}
+	.sticky {
+		background-color: #162030;
+		border-color: #1e2d40 !important;
+	}
+	.main-navigation .menu li:hover {
+		background: #252525;
+	}
+	.main-navigation .menu li a {
+		color: #aaa;
+	}
+	.main-navigation .menu li li {
+		border-top-color: #333;
+	}
+	.main-navigation .menu li li:hover {
+		background: #2a2a2a;
+	}
+	.main-navigation .menu li li a:hover {
+		color: #e0e0e0;
+	}
+	.main-navigation .menu ul {
+		background: #252525;
+	}
+	.main-navigation .current-menu-item > a,
+	.main-navigation .current-menu-ancestor > a,
+	.main-navigation .current_page_item > a,
+	.main-navigation .current_page_ancestor > a {
+		background: #333;
+		color: #e0e0e0;
+	}
+	.main-navigation li.current-menu-item > a,
+	.main-navigation li.current-menu-ancestor > a,
+	.main-navigation li.current-menu-item:hover > a,
+	.main-navigation li.current-menu-ancestor:hover > a {
+		background: transparent;
+		color: #5a9af0;
+	}
+	.main-navigation ul ul .current-menu-item > a,
+	.main-navigation ul ul .current-menu-ancestor > a {
+		background: #162030;
+		color: #e0e0e0;
+	}
+	.main-navigation ul ul .current-menu-item:hover > a,
+	.main-navigation ul ul .current-menu-ancestor:hover > a,
+	.main-navigation ul ul .current-menu-item > a:hover,
+	.main-navigation ul ul .current-menu-ancestor > a:hover {
+		background: #1a2840;
+		color: #e0e0e0;
+	}
+	.ui-menu .ui-menu-item:nth-child(2n+1) a {
+		background: #1c2b45;
+		border-color: #1c2b45;
+	}
+	.ui-menu .ui-menu-item a.ui-state-hover {
+		background: #5a9af0;
+		color: #fff !important;
+		box-shadow: 0 1px 5px rgba(0,0,0,.6);
+	}
+	.ui-menu .ui-menu-item a.ui-state-hover strong {
+		background: rgba(255,255,255,0.2);
+		color: #fff;
+	}
+	.ui-menu-item strong {
+		background: #4a4000;
+	}
 }
 
 /* =Retina Displays

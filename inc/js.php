@@ -45,23 +45,6 @@ class P2_JS {
 			array( 'jquery-ui-autocomplete', 'caret' ),
 			'20110405' );
 
-		/**
-		 * Bundle containing scripts included when the user is logged in.
-		 * Includes, in order:
-		 *     jeditable, caret, jquery-ui-autocomplete,
-		 *     jquery-ui-autocomplete-html, jquery-ui-autocomplete-multiValue,
-		 *     jquery-ui-autocomplete-match
-		 *
-		 * Build the bundle with the bin/bundle-user-js shell script.
-		 *
-		 * @TODO: Improve bundle building/dependency process.
-		 */
-		wp_register_script(
-			'p2-user-bundle',
-			P2_JS_URL . '/p2.user.bundle.js',
-			array( 'jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-position' ),
-			'20130819' );
-
 		wp_register_script(
 			'scrollit',
 			P2_JS_URL .'/jquery.scrollTo-min.js',
