@@ -8,12 +8,11 @@ window.p2 = window.p2 || {};
 		locale = new wp.locale( wpLocale ),
 		loggedin = false,
 
-		// Spinner used when someone edits a comment, done once here vs. all over the shop
-		commentEditSpinnerText = $( '<span class="progress spinner-comment-edit"></span>' ).spin( spinSmall ).css( { display: 'block' } ),
-		commentEditSpinnerText = $( '<div>' ).append( commentEditSpinnerText.clone() ).html(),
+		// Configuration for spin.js — must be declared before commentEditSpinnerText uses it
+		spinSmall = { color: '#ccc', length: 2, lines: 8, radius: 3, speed: '1.3', top: 1, left: 1, width: 2 },
 
-		// Configuration for spin.js
-		spinSmall = { color: '#ccc', length: 2, lines: 8, radius: 3, speed: '1.3', top: 1, left: 1, width: 2 };
+		// Spinner used when someone edits a comment, done once here vs. all over the shop
+		commentEditSpinnerText = $( '<div>' ).append( $( '<span class="progress spinner-comment-edit"></span>' ).spin( spinSmall ).css( { display: 'block' } ).clone() ).html();
 
 	p2.initialize = function() {
 		if ( p2StoredVersion < p2CurrentVersion ) {
@@ -91,7 +90,7 @@ window.p2 = window.p2 || {};
 		// ------------------------------------------------
 		// Events
 		// ------------------------------------------------
-		$(window).bind('beforeunload', function(e) {
+		$(window).on('beforeunload', function(e) {
 			if ( $( '#posttext' ).val() || $( '#comment' ).val() ) {
 				var e = e || window.event;
 				if (e) { // For IE and Firefox
@@ -111,7 +110,7 @@ window.p2 = window.p2 || {};
 		});
 
 		// Catch new comment submit
-		$("#commentform").bind( 'submit', function(trigger) {
+		$("#commentform").on( 'submit', function(trigger) {
 			p2.comment.submit(trigger);
 			trigger.preventDefault();
 			$(this).parents("li").removeClass('replying');
@@ -223,7 +222,7 @@ window.p2 = window.p2 || {};
 
 			// Aggressively limit autocomplete.
 			// Only enable it when @ has been recently pressed.
-			element.bind( 'keypress', function( event ) {
+			element.on( 'keypress', function( event ) {
 				switch ( event.which ) {
 					case 64: // AT key
 						$(this).autocomplete( 'enable' );
@@ -436,11 +435,11 @@ window.p2 = window.p2 || {};
 			var comment_parent = $('#comment_parent', thisForm).val();
 
 			var subscribe = 'false';
-			if ( $( '#subscribe' ).attr( 'checked' ) ) // WP3.1 Compat: Best to use .prop()
+			if ( $( '#subscribe' ).prop( 'checked' ) )
 				subscribe = 'subscribe';
 
 			var subscribe_blog = 'false';
-			if ( $( '#subscribe_blog' ).attr( 'checked' ) ) // WP3.1 Compat: Best to use .prop()
+			if ( $( '#subscribe_blog' ).prop( 'checked' ) )
 				subscribe_blog = 'subscribe';
 
 			var dataString = {action: 'new_comment' , _ajax_post: nonce, comment: commenttext,  comment_parent: comment_parent, comment_post_ID: comment_post_ID, subscribe: subscribe, subscribe_blog: subscribe_blog};
@@ -975,7 +974,7 @@ window.p2 = window.p2 || {};
 			var submitProgress = thisForm.find('span.progress');
 
 			var post_subscribe = 'false';
-			if ( $( '#post_subscribe' ).attr( 'checked' ) ) // WP3.1 Compat: Best to use .prop()
+			if ( $( '#post_subscribe' ).prop( 'checked' ) )
 				post_subscribe = 'post_subscribe';
 
 			var posttext = $.trim($('#posttext').val());
@@ -1314,7 +1313,7 @@ window.p2 = window.p2 || {};
 				this.title = this.t;
 				$("#tooltip").remove();
 				});
-			alink.mousemove(function(e){
+			alink.on('mousemove', function(e){
 				$("#tooltip")
 					.css("top",(e.pageY - yOffset) + "px")
 					.css("left",(e.pageX + xOffset) + "px");

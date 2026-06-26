@@ -57,7 +57,7 @@ Caret.prototype.refresh = function() {
 	range.text = marker + range.text + marker;
 
 	// \r's are counted for each newline... remove them.
-	contents = element.value.replace( /\r/g, '' );
+	var contents = element.value.replace( /\r/g, '' );
 
 	// Find the caret positions
 	start = contents.indexOf( marker );

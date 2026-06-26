@@ -58,10 +58,10 @@ wp.locale = function( translations ) {
 		this[ key ] = translations[ key ];
 	}
 
-	shortMonths = this.monthabbrev;
-	longMonths = this.month;
-	shortDays = this.weekdayabbrev;
-	longDays = this.weekday;
+	var shortMonths = this.monthabbrev;
+	var longMonths = this.month;
+	var shortDays = this.weekdayabbrev;
+	var longDays = this.weekday;
 
 	this.replaceChars = {
 
