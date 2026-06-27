@@ -89,7 +89,10 @@
                     <?php 
 					// new function to display P2 Categories on the front page 
 					// @since 1.6
-					cats_with_count( '', __( '<br />Categories:' , 'p2' ) .' ', ', ', ' &nbsp;' ); ?>&nbsp;
+					$_p2_cat_label = count( get_the_category() ) === 1
+						? __( '<br />Category:', 'p2' )
+						: __( '<br />Categories:', 'p2' );
+					cats_with_count( '', $_p2_cat_label . ' ', ', ', ' &nbsp;' ); ?>&nbsp;
                     
                     </span>
             <?php }} // end if not page and category check ?>
