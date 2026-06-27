@@ -233,22 +233,9 @@ class P2Ajax extends P2Ajax_Read {
 		) );
         
 		// P2 Categories: assign category to the new post (@since 1.0, revised 2.1)
-		$drop_cat     = isset( $_POST['drop_cat'] ) ? sanitize_key( $_POST['drop_cat'] ) : '';
-		$new_cat_name = ( current_user_can( 'manage_categories' ) && isset( $_POST['new_cat'] ) )
-			? sanitize_text_field( wp_unslash( $_POST['new_cat'] ) )
-			: '';
+		$drop_cat = isset( $_POST['drop_cat'] ) ? sanitize_key( $_POST['drop_cat'] ) : '';
 
-		if ( ! empty( $new_cat_name ) ) {
-			// Create the new category; if it already exists, reuse the existing term.
-			$result  = wp_insert_term( $new_cat_name, 'category' );
-			if ( is_wp_error( $result ) ) {
-				$existing = get_term_by( 'name', $new_cat_name, 'category' );
-				$term_id  = $existing ? (int) $existing->term_id : (int) get_option( 'default_category' );
-			} else {
-				$term_id = (int) $result['term_id'];
-			}
-			wp_set_post_terms( $post_id, array( $term_id ), 'category' );
-		} elseif ( $drop_cat !== '' ) {
+		if ( $drop_cat !== '' ) {
 			$post_cat_object = get_term_by( 'slug', $drop_cat, 'category' );
 			wp_set_post_terms( $post_id, array( (int) $post_cat_object->term_id ), 'category' );
 		} else {
