@@ -22,6 +22,13 @@
 			$('#post_format').val($(this).attr('id'));
 			return false;
 		});
+
+		$('#cat-types a').on('click', function(e) {
+			e.preventDefault();
+			$('#cat-types a').removeClass('selected');
+			$(this).addClass('selected');
+			$('#drop_cat').val($(this).data('cat'));
+		});
 	});
 /* ]]> */
 </script>
@@ -48,39 +55,19 @@
 			// adding drop down menu for front page
 			// @since 1.0
 			?>
-            <select name="drop_cat" id="drop_cat">
-            <option value=""><?php echo esc_attr(__('Select a Category', 'p2' )); ?></option>
-            <?php
-            $args = array (
-                'type'           => 'post',
-                'child_of'       => 0,
-                'parent'         => '',
-                'orderby'        => 'name',
-                'order'          => 'ASC',
-                'hide_empty'     => 0,
-                'hierarchical'   => 1,
-                'exclude'        => '',
-                'include'        => '',
-                'number'         => '',
-                'taxonomy'       => 'category',
-                'pad_counts'     => false
-                ); 
-             
-             $categories =  get_categories($args);
-             
-             foreach ($categories as $cat) {
-                $option = '<option value="'.$cat->category_nicename.'">';
-                $option .= $cat->cat_name;
-            
-            
-                // show how many posts there are in each category
-                // $option .= ' ('.$cat->category_count.')';
-                $option .= '</option>';
-                echo $option;
-             }
-             ?>
-             </select>
-             <?php // end of drop down menu ?>
+			<ul id="cat-types">
+				<li><a class="cat-button selected" href="#" data-cat=""><?php esc_html_e( 'No Category', 'p2' ); ?></a></li>
+				<?php
+				$categories = get_categories( array(
+					'orderby'    => 'name',
+					'order'      => 'ASC',
+					'hide_empty' => 0,
+				) );
+				foreach ( $categories as $cat ) : ?>
+				<li><a class="cat-button" href="#" data-cat="<?php echo esc_attr( $cat->slug ); ?>"><?php echo esc_html( $cat->name ); ?></a></li>
+				<?php endforeach; ?>
+			</ul>
+			<input type="hidden" name="drop_cat" id="drop_cat" value="" />
             
 				<?php if ( 'status' == $post_format || empty( $post_format ) ) : ?>
 				<label for="posttext" id="post-prompt">

@@ -12,6 +12,14 @@ Dark mode:
 - OS-level preference changes are detected live via `matchMedia` and applied automatically when no manual preference is stored
 - ☾ and ☀ icons added to the toggle button labels for clarity across languages (Unicode symbols U+263E and U+2600, not emoji — render as text glyphs on all platforms)
 
+Category pill selector:
+
+- Replaced the raw `<select>` category dropdown in `post-form.php` with clickable category pills styled to match the existing post-format tab row (`#post-types`)
+- Each pill uses the same border, radius, background, and `:active` press effect as the format tabs; `No Category` pill is pre-selected as the default
+- Selection updates a `<input type="hidden" name="drop_cat">` via a small jQuery click handler, so the form submission behaviour is unchanged
+- Full dark mode support via `html.dark-mode #cat-types` overrides matching the dark-mode `#post-types` palette
+- Fixed missing `esc_attr()` / `esc_html()` on category slug and name output
+
 Drop local jQuery UI Autocomplete:
 
 - Removed `js/jquery.ui.autocomplete.js` — WordPress already bundles `jquery-ui-autocomplete` and the three P2 extension scripts already declare it as a dependency by its WordPress handle name, so the local copy was loaded twice
