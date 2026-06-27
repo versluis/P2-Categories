@@ -23,12 +23,44 @@
 			return false;
 		});
 
-		$('#cat-types a').on('click', function(e) {
+		// Regular category pill selection
+		$('#cat-types .cat-button').on('click', function(e) {
 			e.preventDefault();
+			var label = '<?php echo esc_js( __( 'New Category', 'p2' ) ); ?>';
+			$('#cat-new-input').hide();
+			$('#cat-new-pill').text(label).show();
+			$('#new_cat').val('');
 			$('#cat-types a').removeClass('selected');
 			$(this).addClass('selected');
 			$('#drop_cat').val($(this).data('cat'));
 		});
+
+		// New Category pill — show inline text input
+		$('#cat-new-pill').on('click', function(e) {
+			e.preventDefault();
+			$('#cat-types a').removeClass('selected');
+			$(this).addClass('selected');
+			$('#drop_cat').val('');
+			$(this).hide();
+			$('#cat-new-input').show().focus().val($('#new_cat').val());
+		});
+
+		function p2CommitNewCat() {
+			var val   = $.trim($('#cat-new-input').val());
+			var label = '<?php echo esc_js( __( 'New Category', 'p2' ) ); ?>';
+			$('#cat-new-input').hide();
+			if ( val ) {
+				$('#new_cat').val(val);
+				$('#cat-new-pill').text(val).addClass('selected').show();
+			} else {
+				$('#new_cat').val('');
+				$('#cat-new-pill').text(label).removeClass('selected').show();
+			}
+		}
+
+		$('#cat-new-input').on('keydown', function(e) {
+			if ( e.which === 13 ) { e.preventDefault(); p2CommitNewCat(); }
+		}).on('blur', p2CommitNewCat);
 	});
 /* ]]> */
 </script>
@@ -56,18 +88,26 @@
 			// @since 1.0
 			?>
 			<ul id="cat-types">
-				<li><a class="cat-button selected" href="#" data-cat=""><?php esc_html_e( 'No Category', 'p2' ); ?></a></li>
+				<?php if ( current_user_can( 'manage_categories' ) ) : ?>
+				<li>
+					<a id="cat-new-pill" href="#"><?php esc_html_e( 'New Category', 'p2' ); ?></a>
+					<input type="text" id="cat-new-input" autocomplete="off" maxlength="200"
+						placeholder="<?php esc_attr_e( 'Category name\xe2\x80\xa6', 'p2' ); ?>" style="display:none;" />
+				</li>
+				<?php endif; ?>
 				<?php
 				$categories = get_categories( array(
-					'orderby'    => 'name',
-					'order'      => 'ASC',
+					'orderby'    => 'count',
+					'order'      => 'DESC',
 					'hide_empty' => 0,
+					'number'     => 8,
 				) );
 				foreach ( $categories as $cat ) : ?>
 				<li><a class="cat-button" href="#" data-cat="<?php echo esc_attr( $cat->slug ); ?>"><?php echo esc_html( $cat->name ); ?></a></li>
 				<?php endforeach; ?>
 			</ul>
 			<input type="hidden" name="drop_cat" id="drop_cat" value="" />
+			<input type="hidden" name="new_cat" id="new_cat" value="" />
             
 				<?php if ( 'status' == $post_format || empty( $post_format ) ) : ?>
 				<label for="posttext" id="post-prompt">

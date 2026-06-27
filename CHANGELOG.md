@@ -15,9 +15,11 @@ Dark mode:
 Category pill selector:
 
 - Replaced the raw `<select>` category dropdown in `post-form.php` with clickable category pills styled to match the existing post-format tab row (`#post-types`)
-- Each pill uses the same border, radius, background, and `:active` press effect as the format tabs; `No Category` pill is pre-selected as the default
-- Selection updates a `<input type="hidden" name="drop_cat">` via a small jQuery click handler, so the form submission behaviour is unchanged
-- Full dark mode support via `html.dark-mode #cat-types` overrides matching the dark-mode `#post-types` palette
+- Each pill uses the same border, radius, background, and `:active` press effect as the format tabs; selecting one updates a hidden `drop_cat` field so form submission is unchanged
+- Category list limited to the 8 most-used categories (ordered by post count descending)
+- Added **New Category** pill (dashed border, visible only to users with `manage_categories` capability): clicking it reveals an inline text input; typing a name and pressing Enter or clicking away commits the name; the pill label updates to show the chosen name
+- Category creation handled server-side in `inc/ajax.php` via `wp_insert_term()`; if the name already exists the existing term is reused rather than erroring
+- Full dark mode support via `html.dark-mode #cat-types` overrides; dark mode style added for the inline text input
 - Fixed missing `esc_attr()` / `esc_html()` on category slug and name output
 
 Drop local jQuery UI Autocomplete:

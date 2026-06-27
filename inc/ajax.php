@@ -232,32 +232,28 @@ class P2Ajax extends P2Ajax_Read {
 			'post_status'   => 'publish'
 		) );
         
-		// P2 Categories
-		// if no category is selected, pick the default category
-		// this will give us the category slug
-		// @since 1.0
-		$drop_cat = isset( $_POST['drop_cat'] ) ? sanitize_key( $_POST['drop_cat'] ) : '';
-		
-		// if nothing was selected, use the default category
-		if ($drop_cat == '') {
-			
-			$drop_cat = get_option('default_category');
-			// in this case we already have the category ID
-			$tag = array( $drop_cat );
-			$taxonomy = 'category';
-			wp_set_post_terms( $post_id, $tag, $taxonomy );
-		
-		} else {
-			// otherwise, let's convert the slug into an ID
+		// P2 Categories: assign category to the new post (@since 1.0, revised 2.1)
+		$drop_cat     = isset( $_POST['drop_cat'] ) ? sanitize_key( $_POST['drop_cat'] ) : '';
+		$new_cat_name = ( current_user_can( 'manage_categories' ) && isset( $_POST['new_cat'] ) )
+			? sanitize_text_field( wp_unslash( $_POST['new_cat'] ) )
+			: '';
+
+		if ( ! empty( $new_cat_name ) ) {
+			// Create the new category; if it already exists, reuse the existing term.
+			$result  = wp_insert_term( $new_cat_name, 'category' );
+			if ( is_wp_error( $result ) ) {
+				$existing = get_term_by( 'name', $new_cat_name, 'category' );
+				$term_id  = $existing ? (int) $existing->term_id : (int) get_option( 'default_category' );
+			} else {
+				$term_id = (int) $result['term_id'];
+			}
+			wp_set_post_terms( $post_id, array( $term_id ), 'category' );
+		} elseif ( $drop_cat !== '' ) {
 			$post_cat_object = get_term_by( 'slug', $drop_cat, 'category' );
-			$post_cat_ID = $post_cat_object->term_id;
-			
-			// now we define the category ID
-			$tag = array( $post_cat_ID );
-			$taxonomy = 'category';
-			wp_set_post_terms( $post_id, $tag, $taxonomy );
+			wp_set_post_terms( $post_id, array( (int) $post_cat_object->term_id ), 'category' );
+		} else {
+			wp_set_post_terms( $post_id, array( (int) get_option( 'default_category' ) ), 'category' );
 		}
-		// end of category tweak
 		
 		if ( empty( $post_id ) )
 			echo '0';
